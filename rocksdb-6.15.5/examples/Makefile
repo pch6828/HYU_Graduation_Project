@@ -14,7 +14,7 @@ endif
 
 .PHONY: clean librocksdb
 
-all: simple_example column_families_example compact_files_example c_simple_example optimistic_transaction_example transaction_example compaction_filter_example options_file_example
+all: simple_example column_families_example compact_files_example c_simple_example optimistic_transaction_example transaction_example compaction_filter_example options_file_example read_bottleneck_test
 
 simple_example: librocksdb simple_example.cc
 	$(CXX) $(CXXFLAGS) -g $@.cc -o$@ ../librocksdb.a -I../include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
@@ -38,6 +38,9 @@ optimistic_transaction_example: librocksdb optimistic_transaction_example.cc
 	$(CXX) $(CXXFLAGS) -g $@.cc -o$@ ../librocksdb.a -I../include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
 
 transaction_example: librocksdb transaction_example.cc
+	$(CXX) $(CXXFLAGS) -g $@.cc -o$@ ../librocksdb.a -I../include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
+
+read_bottleneck_test: librocksdb read_bottleneck_test.cc
 	$(CXX) $(CXXFLAGS) -g $@.cc -o$@ ../librocksdb.a -I../include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
 
 options_file_example: librocksdb options_file_example.cc
