@@ -37,12 +37,11 @@ int main(int argc, char* argv[]) {
   options.level0_slowdown_writes_trigger = 3;
   options.level0_stop_writes_trigger = 4;
   options.num_levels = 5;
-  options.table_factory.reset(NewBlockBasedTableFactory(table_options));
-
+  //options.table_factory.reset(NewBlockBasedTableFactory(table_options));
   // delete existing db
   DestroyDB(kDBPath, options);
   rocksdb::SetPerfLevel(rocksdb::PerfLevel::kEnableTimeExceptForMutex);
-  
+  rocksdb::get_perf_context()->EnablePerLevelPerfContext();
   // open DB
   Status s = TransactionDB::Open(options, txn_db_options, kDBPath, &txn_db);
   assert(s.ok());
@@ -114,34 +113,33 @@ int main(int argc, char* argv[]) {
     }
     s = txn_db->Put(write_options, random_key, random_value.c_str());
     assert(s.ok());
+    cnt++;
+    double txn_lifetime;
+    if(cnt == 100){
+      cnt = 0;
+      // randomize next key-value pair
+      for (auto& c : random_value) {
+        c = rand()%26+'a';
+      }
+      for (auto& c : random_key) {
+        c = rand()%26+'a';
+      }
 
-    // randomize next key-value pair
-    for (auto& c : random_value) {
-      c = rand()%26+'a';
+      rocksdb::get_perf_context()->Reset();
+      s = txn->Get(read_options, random_key, &value);
+      assert(s.ok());
+      auto pc = rocksdb::get_perf_context();
+      now = time(NULL);
+      txn_lifetime = (double)(now-start);
+      uint64_t latency = 0;
+      latency += pc->get_snapshot_time;
+      latency += pc->get_from_memtable_time;
+      for (auto lpc : (*(pc->level_to_perf_context))){
+        latency += lpc.second.get_from_table_nanos;
+      }
+      // latency += pc->get_from_output_files_time;
+      std::cout << txn_lifetime <<"\t"<< latency << std::endl;
     }
-    for (auto& c : random_key) {
-      c = rand()%26+'a';
-    }
-
-    rocksdb::get_perf_context()->Reset();
-    s = txn->Get(read_options, "abcd", &value);
-    assert(s.ok());
-    auto pc = rocksdb::get_perf_context();
-    now = time(NULL);
-    double txn_lifetime = (double)(now-start);
-    uint64_t latency = 0;
-    latency += pc->get_snapshot_time;
-    latency += pc->get_from_memtable_time;
-    latency += pc->get_from_output_files_time;
-    latency += pc->block_read_time;
-    latency += pc->block_checksum_time;
-    latency += pc->get_post_process_time;
-    // latency += pc->new_table_block_iter_nanos;
-    // latency += pc->block_seek_nanos;
-
-
-    std::cout << txn_lifetime <<"\t"<< latency << std::endl;
-
     if(txn_lifetime > experiment_time){
       break;
     }
