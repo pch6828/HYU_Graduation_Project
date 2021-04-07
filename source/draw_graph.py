@@ -11,28 +11,29 @@ def main(argv):
 
     txn_lifetime = []
     latency = []
-    cnt = 0
-    average_latency = 0
+    timestamp = 0
+    total_latency = 0
 
     while True:
         line = file.readline()
         if not line:
             break
-        x, y = map(int, line.split('\t'))
-        y /= 1000
-        if len(txn_lifetime) == 0:
-            txn_lifetime.append(x)
-            cnt = 1
-            average_latency = y
-        elif txn_lifetime[-1] == x:
-            cnt += 1
-            average_latency += y
+        line = line.strip()
+        if line == '<<<':
+            total_latency = 0
+            timestamp += 1
+        elif line == '>>>':
+            txn_lifetime.append(timestamp)
+            latency.append(total_latency)
         else:
-            txn_lifetime.append(x)
-            latency.append(average_latency/cnt)
-            cnt = 1
-            average_latency = y
-    latency.append(average_latency/cnt)
+            splited_line = line.strip().split()
+            prev_word = None
+            for word in splited_line:
+                if prev_word == 'Median:':
+                    total_latency += float(word)
+                prev_word = word
+    txn_lifetime = np.array(txn_lifetime, dtype='float')
+    txn_lifetime = (txn_lifetime / txn_lifetime[-1])*300
     
     plt.plot(txn_lifetime, latency)
     plt.show()

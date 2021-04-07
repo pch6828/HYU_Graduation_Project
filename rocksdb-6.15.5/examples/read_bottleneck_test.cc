@@ -15,9 +15,9 @@
 using namespace ROCKSDB_NAMESPACE;
 
 #if defined(OS_WIN)
-std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_transaction_example";
+std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_read_bottleneck_test";
 #else
-std::string kDBPath = "/tmp/rocksdb_transaction_example";
+std::string kDBPath = "/tmp/rocksdb_read_bottleneck_test";
 #endif
 
 int main(int argc, char* argv[]) {
@@ -27,9 +27,7 @@ int main(int argc, char* argv[]) {
   options.create_if_missing = true;
   TransactionDB* txn_db;
 
-  // options setting
   table_options.no_block_cache = true;
-  
   options.write_buffer_size = 4*1024*1024;
   options.max_bytes_for_level_base = 8*1024*1024;
   options.max_bytes_for_level_multiplier = 2;
@@ -37,11 +35,13 @@ int main(int argc, char* argv[]) {
   options.level0_slowdown_writes_trigger = 3;
   options.level0_stop_writes_trigger = 4;
   options.num_levels = 5;
-  //options.table_factory.reset(NewBlockBasedTableFactory(table_options));
+  options.table_factory.reset(NewBlockBasedTableFactory(table_options));
+  
+  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics->set_stats_level(kAll);
+  
   // delete existing db
   DestroyDB(kDBPath, options);
-  rocksdb::SetPerfLevel(rocksdb::PerfLevel::kEnableTimeExceptForMutex);
-  rocksdb::get_perf_context()->EnablePerLevelPerfContext();
   // open DB
   Status s = TransactionDB::Open(options, txn_db_options, kDBPath, &txn_db);
   assert(s.ok());
@@ -70,39 +70,28 @@ int main(int argc, char* argv[]) {
   srand(time(NULL));
   std::string random_value(1024, 'a');
   std::string random_key(4, 'a');
-  s = txn_db->Put(write_options, random_key, random_value.c_str());
-  assert(s.ok()); 
 
-  // pre-inserting all datas
-  for(int a = 0; a < 26; a++){
-    for(int b = 0; b < 26; b++){
-      for(int c = 0; c < 26; c++){
-        for(int d = 0; d < 26; d++){
-          random_key[0] = a+'a';
-          random_key[1] = b+'a';
-          random_key[2] = c+'a';
-          random_key[3] = d+'a';
-          
-          for (auto& c : random_value) {
-            c = rand()%26+'a';
-          }
-          s = txn_db->Put(write_options, random_key, random_value.c_str());
-          assert(s.ok()); 
-        }
-      }
+  int initial_size = rand()%10000+1;
+  while(initial_size--){
+    for (auto& c : random_value) {
+      c = rand()%26+'a';
     }
+    for (auto& c : random_key) {
+      c = rand()%26+'a';
+    }
+    s = txn_db->Put(write_options, random_key, random_value.c_str());
+    assert(s.ok()); 
   }
   
   start = time(NULL);
-  
+
   // setting snapshot isolation
   txn_options.set_snapshot = true;
   Transaction* txn = txn_db->BeginTransaction(write_options, txn_options);
+
   const Snapshot* snapshot = txn->GetSnapshot();
   read_options.snapshot = snapshot;
   int cnt = 0;
-  double prev = 0;
-  uint64_t average_latency = 0;
   while (true) {
     // Write a key OUTSIDE of transaction
     for (auto& c : random_value) {
@@ -113,33 +102,24 @@ int main(int argc, char* argv[]) {
     }
     s = txn_db->Put(write_options, random_key, random_value.c_str());
     assert(s.ok());
-    cnt++;
     double txn_lifetime;
-    if(cnt == 100){
+    now = time(NULL);
+    cnt++;
+    if(cnt == 10000){
       cnt = 0;
       // randomize next key-value pair
-      for (auto& c : random_value) {
-        c = rand()%26+'a';
-      }
       for (auto& c : random_key) {
         c = rand()%26+'a';
       }
 
-      rocksdb::get_perf_context()->Reset();
       s = txn->Get(read_options, random_key, &value);
-      assert(s.ok());
-      auto pc = rocksdb::get_perf_context();
-      now = time(NULL);
-      txn_lifetime = (double)(now-start);
-      uint64_t latency = 0;
-      latency += pc->get_snapshot_time;
-      latency += pc->get_from_memtable_time;
-      for (auto lpc : (*(pc->level_to_perf_context))){
-        latency += lpc.second.get_from_table_nanos;
-      }
-      // latency += pc->get_from_output_files_time;
-      std::cout << txn_lifetime <<"\t"<< latency << std::endl;
+      std::string prop;
+      txn_db->GetProperty("rocksdb.cf-file-histogram", &prop);
+      std::cout<<"<<<"<<std::endl;
+      std::cout<<prop<<std::endl;
+      std::cout<<">>>"<<std::endl;
     }
+    txn_lifetime = (double)(now-start);
     if(txn_lifetime > experiment_time){
       break;
     }
