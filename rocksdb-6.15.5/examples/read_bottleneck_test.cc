@@ -10,6 +10,7 @@
 #include "rocksdb/table.h"
 
 #include <iostream>
+#include <sstream>
 #include <ctime>
 #include <string>
 using namespace ROCKSDB_NAMESPACE;
@@ -27,7 +28,7 @@ int main(int argc, char* argv[]) {
   options.create_if_missing = true;
   TransactionDB* txn_db;
 
-  table_options.no_block_cache = true;
+  //table_options.no_block_cache = true;
   options.write_buffer_size = 4*1024*1024;
   options.max_bytes_for_level_base = 8*1024*1024;
   options.max_bytes_for_level_multiplier = 2;
@@ -35,10 +36,10 @@ int main(int argc, char* argv[]) {
   options.level0_slowdown_writes_trigger = 3;
   options.level0_stop_writes_trigger = 4;
   options.num_levels = 5;
-  options.table_factory.reset(NewBlockBasedTableFactory(table_options));
+  //options.table_factory.reset(NewBlockBasedTableFactory(table_options));
   
   options.statistics = rocksdb::CreateDBStatistics();
-  options.statistics->set_stats_level(kAll);
+  options.statistics->set_stats_level(StatsLevel::kExceptTimeForMutex);
   
   // delete existing db
   DestroyDB(kDBPath, options);
@@ -105,7 +106,7 @@ int main(int argc, char* argv[]) {
     double txn_lifetime;
     now = time(NULL);
     cnt++;
-    if(cnt == 10000){
+    if(cnt == 2){
       cnt = 0;
       // randomize next key-value pair
       for (auto& c : random_key) {
@@ -114,10 +115,20 @@ int main(int argc, char* argv[]) {
 
       s = txn->Get(read_options, random_key, &value);
       std::string prop;
-      txn_db->GetProperty("rocksdb.cf-file-histogram", &prop);
-      std::cout<<"<<<"<<std::endl;
-      std::cout<<prop<<std::endl;
-      std::cout<<">>>"<<std::endl;
+      double latency = 0;
+      // txn_db->GetProperty("rocksdb.cf-file-histogram", &prop);
+      // std::istringstream sin(prop);
+      // std::string word;
+      // while(sin >> word){
+      //   if(word == "Average:"){
+      //     double temp;
+      //     sin>>temp;
+      //     latency += temp;
+      //   }
+      // }
+      HistogramData histogram;
+      options.statistics->histogramData(Histograms::DB_GET, &histogram);
+      std::cout<<histogram.median<<std::endl;
     }
     txn_lifetime = (double)(now-start);
     if(txn_lifetime > experiment_time){
