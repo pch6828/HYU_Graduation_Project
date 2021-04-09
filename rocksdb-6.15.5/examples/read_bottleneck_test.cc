@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
   options.create_if_missing = true;
   TransactionDB* txn_db;
 
-  //table_options.no_block_cache = true;
+  //Setting for Options
   options.write_buffer_size = 4*1024*1024;
   options.max_bytes_for_level_base = 8*1024*1024;
   options.max_bytes_for_level_multiplier = 2;
@@ -36,14 +36,14 @@ int main(int argc, char* argv[]) {
   options.level0_slowdown_writes_trigger = 3;
   options.level0_stop_writes_trigger = 4;
   options.num_levels = 5;
-  //options.table_factory.reset(NewBlockBasedTableFactory(table_options));
   
   options.statistics = rocksdb::CreateDBStatistics();
   options.statistics->set_stats_level(StatsLevel::kExceptTimeForMutex);
   
-  // delete existing db
+  // Delete Existing DB
   DestroyDB(kDBPath, options);
-  // open DB
+  
+  // Open DB
   Status s = TransactionDB::Open(options, txn_db_options, kDBPath, &txn_db);
   assert(s.ok());
 
@@ -52,14 +52,9 @@ int main(int argc, char* argv[]) {
   TransactionOptions txn_options;
   std::string value;
 
-  ////////////////////////////////////////////////////////
-  //
-  // "Repeatable Read" (Snapshot Isolation) Example
-  //   -- Using a single Snapshot
-  //
-  ////////////////////////////////////////////////////////
+  // Experiment Time (seconds)
+  // Default Value is 5 minutes
   double experiment_time;
-  int check_interval;
   if(argc > 1){
     experiment_time = std::stod(std::string(argv[1]));
   }else{
@@ -72,6 +67,7 @@ int main(int argc, char* argv[]) {
   std::string random_value(1024, 'a');
   std::string random_key(4, 'a');
 
+  // Initialize DB with Random Key-Value Pairs
   int initial_size = rand()%10000+1;
   while(initial_size--){
     for (auto& c : random_value) {
@@ -86,13 +82,15 @@ int main(int argc, char* argv[]) {
   
   start = time(NULL);
 
-  // setting snapshot isolation
+  // Setting Snapshot Isolation
   txn_options.set_snapshot = true;
   Transaction* txn = txn_db->BeginTransaction(write_options, txn_options);
 
   const Snapshot* snapshot = txn->GetSnapshot();
   read_options.snapshot = snapshot;
   int cnt = 0;
+  
+  // Experiment Start
   while (true) {
     // Write a key OUTSIDE of transaction
     for (auto& c : random_value) {
@@ -106,30 +104,27 @@ int main(int argc, char* argv[]) {
     double txn_lifetime;
     now = time(NULL);
     cnt++;
+
+    // Read/Write Ratio => 1 : 2
     if(cnt == 2){
       cnt = 0;
-      // randomize next key-value pair
+      // Randomize Key for Get Operation
       for (auto& c : random_key) {
         c = rand()%26+'a';
       }
-
+      
+      // Read Old Snapshot
       s = txn->Get(read_options, random_key, &value);
+
+      // Get Statistics (Get Operation Latency)
       std::string prop;
       double latency = 0;
-      // txn_db->GetProperty("rocksdb.cf-file-histogram", &prop);
-      // std::istringstream sin(prop);
-      // std::string word;
-      // while(sin >> word){
-      //   if(word == "Average:"){
-      //     double temp;
-      //     sin>>temp;
-      //     latency += temp;
-      //   }
-      // }
       HistogramData histogram;
       options.statistics->histogramData(Histograms::DB_GET, &histogram);
       std::cout<<histogram.median<<std::endl;
     }
+
+    // Stop Experiment If Transaction Lifetime Exceeds Pre-defined Experiment Time
     txn_lifetime = (double)(now-start);
     if(txn_lifetime > experiment_time){
       break;
