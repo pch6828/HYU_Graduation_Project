@@ -118,7 +118,13 @@ int main(int argc, char* argv[]) {
       // Get Statistics (Get Operation Latency)
       std::cout<<pc->get_snapshot_time/get_cnt<<"\t";
       std::cout<<pc->get_from_memtable_time/get_cnt<<"\t";
-      std::cout<<pc->get_from_output_files_time/get_cnt<<"\t";
+      for (int i = 0; i < 5; i++){
+        if((pc->level_to_perf_context)->count(i)){
+          std::cout<<(*(pc->level_to_perf_context))[i].get_from_table_nanos/get_cnt<<"\t";
+        }else{
+          std::cout<<0<<"\t";
+        }
+      }
       std::cout<<pc->get_post_process_time/get_cnt<<"\n";
     }
 
