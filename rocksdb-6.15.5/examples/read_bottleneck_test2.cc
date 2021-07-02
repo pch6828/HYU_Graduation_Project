@@ -129,7 +129,11 @@ int main(int argc, char* argv[]) {
       }
       
       // Read Old Snapshot
+      uint64_t start = rdtsc();
+      std::cout << start << std::endl;
       s = txn->Get(read_options, random_key, &value);
+      uint64_t end = rdtsc();
+      std::cout << end << std::endl;
 
       // Get Statistics (Get Operation Latency)
       std::string prop;
