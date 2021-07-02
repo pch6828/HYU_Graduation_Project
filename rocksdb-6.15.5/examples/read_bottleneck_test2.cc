@@ -13,12 +13,27 @@
 #include <sstream>
 #include <ctime>
 #include <string>
+
+#include <stdint.h>
+
 using namespace ROCKSDB_NAMESPACE;
 
 #if defined(OS_WIN)
 std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_read_bottleneck_test";
+#include <intrin.h>
+uint64_t rdtsc(){
+    return __rdtsc();
+}
+
 #else
 std::string kDBPath = "/tmp/rocksdb_read_bottleneck_test";
+
+uint64_t rdtsc(){
+    unsigned int lo, hi;
+    __asm__ __volatile__ ("rdtsc" : "=a" (lo), "=d" (hi));
+    return ((uint64_t)hi << 32) | lo;
+}
+
 #endif
 
 int main(int argc, char* argv[]) {
