@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/rocksdb-6.15.5/examples/read_bottleneck_test",
+            "program": "${workspaceFolder}/rocksdb-6.15.5/examples/read_bottleneck_breakdown_test",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

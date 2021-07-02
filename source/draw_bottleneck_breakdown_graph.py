@@ -11,8 +11,17 @@ def main(argv):
     txn_lifetime = []
     latency = []
     timestamp = 0
-
-    fig, ax = plt.subplots()
+    subplot_title = [
+        'GET_SNAPSHOT_TIME',
+        'GET_FROM_MEMTABLE_TIME',
+        'GET_FROM_LEVEL_1',
+        'GET_FROM_LEVEL_2',
+        'GET_FROM_LEVEL_3',
+        'GET_FROM_LEVEL_4',
+        'GET_FROM_LEVEL_5',
+        'GET_POST_PROCESS_TIME'
+    ]
+    
     while True:
         line = file.readline()
         if not line:
@@ -27,10 +36,12 @@ def main(argv):
     latency = np.array(latency).T
 
     y = np.zeros(txn_lifetime.size)
-    for row in latency:
+    for row, title in zip(latency, subplot_title):
         prev_y = np.copy(y)
         y += row
-        ax.fill_between(txn_lifetime, prev_y, y, alpha = 0.5)
+        plt.fill_between(txn_lifetime, prev_y, y, alpha = 0.5, label = title)
+    plt.rc('legend', fontsize='xx-small')
+    plt.legend(loc='upper left')
     plt.show()
 
 if __name__ == "__main__":
