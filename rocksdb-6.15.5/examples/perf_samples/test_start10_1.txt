@@ -1,0 +1,396 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 69  of event 'cycles:ppp'
+# Event count (approx.): 11962129
+#
+# Overhead  Command          Shared Object                   Symbol                                   
+# ........  ...............  ..............................  .........................................
+#
+     7.39%  read_bottleneck  [kernel.kallsyms]               [k] do_syscall_64
+            |
+            ---do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               |          
+               |--2.48%--mmap64
+               |          
+               |--2.46%--__brk
+               |          
+                --2.45%--__fxstat64
+                          rocksdb::CompositeEnvWrapper::GetChildren
+                          rocksdb::DeleteScheduler::CleanupDirectory
+                          rocksdb::SanitizeOptions
+                          rocksdb::DBImpl::DBImpl
+                          rocksdb::DBImpl::Open
+                          rocksdb::TransactionDB::Open
+                          rocksdb::TransactionDB::Open
+                          main
+                          0xbee258d4c544155
+
+     7.39%  read_bottleneck  ld-2.27.so                      [.] strcmp
+            |
+            ---strcmp
+               |          
+               |--4.93%--0
+               |          
+                --2.46%--0x6873756c66660036
+
+     7.34%  read_bottleneck  [kernel.kallsyms]               [k] clear_page_erms
+            |
+            ---clear_page_erms
+               __alloc_pages_nodemask
+               alloc_pages_vma
+               __handle_mm_fault
+               handle_mm_fault
+               __do_page_fault
+               do_page_fault
+               page_fault
+               |          
+               |--4.89%--rocksdb::HistogramStat::HistogramStat
+               |          rocksdb::StatisticsImpl::StatisticsImpl
+               |          rocksdb::CreateDBStatistics
+               |          main
+               |          0xbee258d4c544155
+               |          
+                --2.44%--_GLOBAL__sub_I__ZN7rocksdb22ColumnFamilyHandleImplC2EPNS_16ColumnFamilyDataEPNS_6DBImplEPNS_17InstrumentedMutexE
+                          __libc_csu_init
+
+     7.32%  read_bottleneck  libc-2.27.so                    [.] _int_malloc
+            |
+            ---_int_malloc
+
+     4.93%  read_bottleneck  ld-2.27.so                      [.] _dl_lookup_symbol_x
+            |
+            ---_dl_lookup_symbol_x
+
+     4.92%  read_bottleneck  ld-2.27.so                      [.] do_lookup_x
+            |
+            ---do_lookup_x
+               0
+
+     4.92%  read_bottleneck  [kernel.kallsyms]               [k] prepare_exit_to_usermode
+            |
+            ---prepare_exit_to_usermode
+               swapgs_restore_regs_and_return_to_usermode
+               |          
+               |--2.47%--_dl_relocate_object
+               |          dl_main
+               |          _dl_sysdep_start
+               |          0x40
+               |          
+                --2.44%--rocksdb::HistogramStat::HistogramStat
+                          rocksdb::StatisticsImpl::StatisticsImpl
+                          rocksdb::CreateDBStatistics
+                          main
+                          0xbee258d4c544155
+
+     2.48%  read_bottleneck  [kernel.kallsyms]               [k] __rb_insert_augmented
+            |
+            ---__rb_insert_augmented
+               vma_interval_tree_insert
+               __vma_link_file
+               __vma_adjust
+               __split_vma
+               split_vma
+               mprotect_fixup
+               do_mprotect_pkey
+               sys_mprotect
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               mprotect
+               _dl_map_object
+
+     2.48%  read_bottleneck  [kernel.kallsyms]               [k] sync_regs
+            |
+            ---sync_regs
+               error_entry
+               _dl_relocate_object
+               dl_main
+               _dl_sysdep_start
+               0x40
+
+     2.46%  read_bottleneck  [kernel.kallsyms]               [k] filemap_map_pages
+            |
+            ---filemap_map_pages
+               __handle_mm_fault
+               handle_mm_fault
+               __do_page_fault
+               do_page_fault
+               page_fault
+               std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string
+               __libc_csu_init
+
+     2.46%  read_bottleneck  [kernel.kallsyms]               [k] kfree
+            |
+            ---kfree
+               ext4_ext_map_blocks
+               ext4_map_blocks
+               ext4_alloc_file_blocks
+               ext4_fallocate
+               vfs_fallocate
+               sys_fallocate
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               fallocate64
+               rocksdb::CompositeEnvWrapper::NewLogger
+               rocksdb::CreateLoggerFromOptions
+               rocksdb::SanitizeOptions
+               rocksdb::SanitizeOptions
+               rocksdb::DestroyDB
+               main
+               0xbee258d4c544155
+
+     2.46%  read_bottleneck  [kernel.kallsyms]               [k] memset_erms
+            |
+            ---memset_erms
+               alloc_perf_context
+               inherit_task_group.isra.100.part.101
+               perf_event_init_task
+               copy_process.part.35
+               _do_fork
+               sys_clone
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               __clone
+               std::thread::_M_start_thread
+               rocksdb::ThreadPoolImpl::Impl::SetBackgroundThreadsInternal
+               rocksdb::SanitizeOptions
+               rocksdb::SanitizeOptions
+               rocksdb::DestroyDB
+               main
+               0xbee258d4c544155
+
+     2.46%  read_bottleneck  [kernel.kallsyms]               [k] __pagevec_lru_add_fn
+            |
+            ---__pagevec_lru_add_fn
+               pagevec_lru_move_fn
+               __lru_cache_add
+               lru_cache_add_active_or_unevictable
+               __handle_mm_fault
+               handle_mm_fault
+               __do_page_fault
+               do_page_fault
+               page_fault
+               rocksdb::CoreLocalArray<rocksdb::StatisticsImpl::StatisticsData>::CoreLocalArray
+               rocksdb::StatisticsImpl::StatisticsImpl
+               rocksdb::CreateDBStatistics
+               main
+               0xbee258d4c544155
+
+     2.45%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::HistogramStat::HistogramStat
+            |
+            ---rocksdb::HistogramStat::HistogramStat
+               rocksdb::StatisticsImpl::StatisticsImpl
+               rocksdb::CreateDBStatistics
+               main
+               0xbee258d4c544155
+
+     2.45%  read_bottleneck  [kernel.kallsyms]               [k] filp_close
+            |
+            ---filp_close
+               __close_fd
+               sys_close
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               __close_nocancel
+               rocksdb::CompositeEnvWrapper::GetChildren
+               rocksdb::DestroyDB
+               main
+               0xbee258d4c544155
+
+     2.45%  read_bottleneck  [kernel.kallsyms]               [k] page_fault
+            |
+            ---page_fault
+               rocksdb::HistogramStat::HistogramStat
+               rocksdb::StatisticsImpl::StatisticsImpl
+               rocksdb::CreateDBStatistics
+               main
+               0xbee258d4c544155
+
+     2.45%  read_bottleneck  [kernel.kallsyms]               [k] get_page_from_freelist
+            |
+            ---get_page_from_freelist
+               __alloc_pages_nodemask
+               alloc_pages_vma
+               __handle_mm_fault
+               handle_mm_fault
+               __do_page_fault
+               do_page_fault
+               page_fault
+               rocksdb::HistogramStat::HistogramStat
+               rocksdb::StatisticsImpl::StatisticsImpl
+               rocksdb::CreateDBStatistics
+               main
+               0xbee258d4c544155
+
+     2.45%  read_bottleneck  [kernel.kallsyms]               [k] native_irq_return_iret
+            |
+            ---native_irq_return_iret
+               rocksdb::HistogramStat::HistogramStat
+               rocksdb::StatisticsImpl::StatisticsImpl
+               rocksdb::CreateDBStatistics
+               main
+               0xbee258d4c544155
+
+     2.44%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::HistogramStat::Clear
+            |
+            ---rocksdb::HistogramStat::Clear
+               rocksdb::CoreLocalArray<rocksdb::StatisticsImpl::StatisticsData>::CoreLocalArray
+               rocksdb::StatisticsImpl::StatisticsImpl
+               rocksdb::CreateDBStatistics
+               main
+               0xbee258d4c544155
+
+     2.44%  read_bottleneck  [kernel.kallsyms]               [k] __entry_trampoline_start
+            |
+            ---__entry_trampoline_start
+               read
+               0
+
+     2.43%  read_bottleneck  [kernel.kallsyms]               [k] ext4_mb_good_group
+            |
+            ---ext4_mb_good_group
+               ext4_mb_regular_allocator
+               ext4_mb_new_blocks
+               ext4_ext_map_blocks
+               ext4_map_blocks
+               ext4_alloc_file_blocks
+               ext4_fallocate
+               vfs_fallocate
+               sys_fallocate
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               fallocate64
+
+     2.43%  read_bottleneck  libc-2.27.so                    [.] _itoa_word
+            |
+            ---_itoa_word
+               __vsnprintf_chk
+
+     2.43%  read_bottleneck  [kernel.kallsyms]               [k] idle_cpu
+            |
+            ---idle_cpu
+               select_idle_sibling
+               select_task_rq_fair
+               try_to_wake_up
+               wake_up_process
+               insert_work
+               __queue_work
+               queue_work_on
+               call_usermodehelper_exec
+               do_coredump
+               get_signal
+               do_signal
+               exit_to_usermode_loop
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               raise
+               0x4173257325203a75
+
+     2.42%  read_bottleneck  libc-2.27.so                    [.] vfprintf
+            |
+            ---vfprintf
+               __vsnprintf_chk
+
+     2.37%  read_bottleneck  [kernel.kallsyms]               [k] dec_zone_page_state
+            |
+            ---dec_zone_page_state
+               ___pte_free_tlb
+               free_pgd_range
+               free_pgtables
+               exit_mmap
+               mmput
+               do_exit
+               do_group_exit
+               get_signal
+               do_signal
+               exit_to_usermode_loop
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+
+     2.36%  read_bottleneck  [kernel.kallsyms]               [k] unmap_page_range
+            |
+            ---unmap_page_range
+               unmap_single_vma
+               unmap_vmas
+               exit_mmap
+               mmput
+               do_exit
+               do_group_exit
+               get_signal
+               do_signal
+               exit_to_usermode_loop
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+
+     2.36%  read_bottleneck  [kernel.kallsyms]               [k] update_cfs_rq_h_load
+            |
+            ---update_cfs_rq_h_load
+               select_task_rq_fair
+               try_to_wake_up
+               wake_up_process
+               do_coredump
+               get_signal
+               do_signal
+               exit_to_usermode_loop
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               raise
+               0x4173257325203a75
+
+     2.12%  read_bottleneck  [kernel.kallsyms]               [k] __do_page_fault
+            |
+            ---__do_page_fault
+               do_page_fault
+               page_fault
+               _start
+
+     1.71%  rocksdb:low0     [kernel.kallsyms]               [k] __do_page_fault
+            |
+            ---__do_page_fault
+               do_page_fault
+               page_fault
+               new_heap
+
+     1.08%  read_bottleneck  [kernel.kallsyms]               [k] total_mapping_size
+            |
+            ---total_mapping_size
+               search_binary_handler
+               do_execveat_common.isra.34
+               sys_execve
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               0x7f34bb8d1c07
+
+     0.93%  rocksdb:high0    libc-2.27.so                    [.] new_heap
+            |
+            ---new_heap
+
+     0.57%  rocksdb:low0     ld-2.27.so                      [.] do_lookup_x
+            |
+            ---do_lookup_x
+
+     0.24%  perf             [kernel.kallsyms]               [k] __x86_indirect_thunk_r14
+     0.20%  rocksdb:high0    [kernel.kallsyms]               [k] end_repeat_nmi
+     0.10%  rocksdb:low0     [kernel.kallsyms]               [k] end_repeat_nmi
+     0.05%  perf             [kernel.kallsyms]               [k] native_flush_tlb_one_user
+     0.04%  rocksdb:high0    [kernel.kallsyms]               [k] native_flush_tlb_one_user
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] native_sched_clock
+     0.01%  perf             [kernel.kallsyms]               [k] sched_clock
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] sched_clock
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] native_apic_mem_write
+     0.00%  perf             [kernel.kallsyms]               [k] native_apic_mem_write
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] native_apic_mem_write
+     0.00%  perf             [kernel.kallsyms]               [k] intel_bts_enable_local
+     0.00%  perf             [kernel.kallsyms]               [k] perf_event_exec
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] x86_pmu_enable
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] intel_pmu_handle_irq
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] x86_pmu_enable
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] intel_pmu_handle_irq
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

@@ -1,0 +1,57 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 478K of event 'cycles:ppp'
+# Event count (approx.): 316988812991
+#
+# Children      Self  Command          Shared Object                   Symbol                                                     
+# ........  ........  ...............  ..............................  ...........................................................
+#
+     4.83%     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+            |          
+             --4.78%--rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+                       |          
+                        --4.73%--rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+                                  |          
+                                  |--1.59%--rocksdb::BlockFetcher::ReadBlockContents
+                                  |          |          
+                                  |           --0.69%--rocksdb::RandomAccessFileReader::Read
+                                  |          
+                                  |--0.94%--rocksdb::BlockBasedTable::PutDataBlockToCache<rocksdb::Block>
+                                  |          |          
+                                  |           --0.66%--rocksdb::ShardedCache::Insert
+                                  |                     |          
+                                  |                      --0.57%--rocksdb::LRUCacheShard::Insert
+                                  |          
+                                  |--0.73%--__memmove_avx_unaligned_erms
+                                  |          
+                                   --0.70%--rocksdb::BlockBasedTable::GetDataBlockFromCache<rocksdb::Block>
+                                             |          
+                                              --0.64%--rocksdb::BlockBasedTable::GetEntryFromCache
+
+     3.60%     0.11%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+            |          
+             --3.49%--rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+                       |          
+                       |--2.16%--rocksdb::(anonymous namespace)::ReadBlockFromFile<rocksdb::Block>
+                       |          |          
+                       |           --1.56%--rocksdb::BlockFetcher::ReadBlockContents
+                       |                     |          
+                       |                     |--0.72%--rocksdb::RandomAccessFileReader::Read
+                       |                     |          
+                       |                      --0.53%--rocksdb::crc32c::crc32c_3way
+                       |          
+                        --0.91%--rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+                                  |          
+                                   --0.74%--rocksdb::BlockBasedTable::GetDataBlockFromCache<rocksdb::Block>
+                                             |          
+                                              --0.67%--rocksdb::BlockBasedTable::GetEntryFromCache
+
+     0.00%     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

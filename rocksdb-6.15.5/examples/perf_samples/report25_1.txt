@@ -1,0 +1,1918 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 31K of event 'cycles:ppp'
+# Event count (approx.): 17301337030
+#
+# Overhead  Command          Shared Object                   Symbol                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+# ........  ...............  ..............................  ................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+#
+    12.58%  read_bottleneck  libc-2.27.so                    [.] __random_r
+            |
+            ---__random_r
+
+    10.65%  read_bottleneck  libc-2.27.so                    [.] __random
+            |
+            ---__random
+
+     6.59%  read_bottleneck  read_bottleneck_breakdown_test  [.] main
+            |
+            ---main
+
+     2.68%  read_bottleneck  libc-2.27.so                    [.] rand
+            |
+            ---rand
+
+     1.99%  read_bottleneck  read_bottleneck_breakdown_test  [.] rand@plt
+            |
+            ---rand@plt
+
+     1.49%  rocksdb:low0     [kernel.kallsyms]               [k] copy_user_enhanced_fast_string
+            |
+            ---copy_user_enhanced_fast_string
+               |          
+               |--0.91%--iov_iter_copy_from_user_atomic
+               |          generic_perform_write
+               |          __generic_file_write_iter
+               |          ext4_file_write_iter
+               |          new_sync_write
+               |          __vfs_write
+               |          vfs_write
+               |          sys_write
+               |          do_syscall_64
+               |          entry_SYSCALL_64_after_hwframe
+               |          __libc_write
+               |          
+                --0.58%--copy_page_to_iter
+                          generic_file_read_iter
+                          ext4_file_read_iter
+                          new_sync_read
+                          __vfs_read
+                          vfs_read
+                          sys_pread64
+                          do_syscall_64
+                          entry_SYSCALL_64_after_hwframe
+                          __libc_pread64
+
+     1.40%  read_bottleneck  [kernel.kallsyms]               [k] copy_user_enhanced_fast_string
+            |
+            ---copy_user_enhanced_fast_string
+               |          
+                --1.25%--copy_page_to_iter
+                          generic_file_read_iter
+                          ext4_file_read_iter
+                          new_sync_read
+                          __vfs_read
+                          vfs_read
+                          sys_pread64
+                          do_syscall_64
+                          entry_SYSCALL_64_after_hwframe
+                          __libc_pread64
+
+     1.22%  read_bottleneck  libc-2.27.so                    [.] cfree@GLIBC_2.2.5
+            |
+            ---cfree@GLIBC_2.2.5
+
+     1.09%  read_bottleneck  libc-2.27.so                    [.] __memmove_avx_unaligned_erms
+            |
+            ---__memmove_avx_unaligned_erms
+               |          
+                --0.72%--rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+                          rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+                          rocksdb::BlockBasedTable::NewDataBlockIterator<rocksdb::DataBlockIter>
+                          rocksdb::BlockBasedTable::Get
+                          rocksdb::TableCache::Get
+                          rocksdb::Version::Get
+                          rocksdb::DBImpl::GetImpl
+                          rocksdb::DBImpl::Get
+                          rocksdb::DBImpl::Get
+                          rocksdb::WriteBatchWithIndex::GetFromBatchAndDB
+                          rocksdb::WriteBatchWithIndex::GetFromBatchAndDB
+                          rocksdb::TransactionBaseImpl::Get
+                          rocksdb::TransactionBaseImpl::Get
+                          rocksdb::TransactionBaseImpl::Get
+                          main
+
+     1.05%  read_bottleneck  [kernel.kallsyms]               [k] do_syscall_64
+            |
+            ---do_syscall_64
+               |          
+                --1.02%--entry_SYSCALL_64_after_hwframe
+
+     1.02%  rocksdb:low0     libc-2.27.so                    [.] __memmove_avx_unaligned_erms
+            |
+            ---__memmove_avx_unaligned_erms
+
+     0.90%  read_bottleneck  [vdso]                          [.] __vdso_clock_gettime
+            |          
+             --0.90%--__vdso_clock_gettime
+                       |          
+                        --0.71%--__clock_gettime
+
+     0.84%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::KeyComparator::operator()
+            |
+            ---rocksdb::MemTable::KeyComparator::operator()
+
+     0.70%  read_bottleneck  libc-2.27.so                    [.] malloc
+            |
+            ---malloc
+
+     0.68%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::IndexBlockIter::SeekImpl
+            |
+            ---rocksdb::IndexBlockIter::SeekImpl
+               |          
+                --0.67%--rocksdb::BlockIter<rocksdb::IndexValue>::Seek
+                          rocksdb::BlockBasedTable::Get
+                          rocksdb::TableCache::Get
+                          rocksdb::Version::Get
+                          rocksdb::DBImpl::GetImpl
+                          rocksdb::DBImpl::Get
+                          rocksdb::DBImpl::Get
+                          rocksdb::WriteBatchWithIndex::GetFromBatchAndDB
+                          rocksdb::WriteBatchWithIndex::GetFromBatchAndDB
+                          rocksdb::TransactionBaseImpl::Get
+                          rocksdb::TransactionBaseImpl::Get
+                          rocksdb::TransactionBaseImpl::Get
+                          main
+
+     0.68%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::BytewiseComparatorImpl::Compare
+            |
+            ---rocksdb::(anonymous namespace)::BytewiseComparatorImpl::Compare
+
+     0.66%  rocksdb:low0     libc-2.27.so                    [.] __memset_avx2_erms
+            |
+            ---__memset_avx2_erms
+
+     0.65%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::KeyComparator::operator()
+            |
+            ---rocksdb::MemTable::KeyComparator::operator()
+
+     0.58%  rocksdb:low0     libsnappy.so.1.1.7              [.] snappy::internal::CompressFragment
+            |
+            ---snappy::internal::CompressFragment
+
+     0.57%  read_bottleneck  libc-2.27.so                    [.] __memcmp_avx2_movbe
+            |
+            ---__memcmp_avx2_movbe
+
+     0.51%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::crc32c::crc32c_3way
+            |
+            ---rocksdb::crc32c::crc32c_3way
+
+     0.50%  rocksdb:high0    libc-2.27.so                    [.] __memmove_avx_unaligned_erms
+            |
+            ---__memmove_avx_unaligned_erms
+
+     0.47%  read_bottleneck  libc-2.27.so                    [.] _int_malloc
+     0.45%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::crc32c::crc32c_3way
+     0.44%  rocksdb:low0     libc-2.27.so                    [.] cfree@GLIBC_2.2.5
+     0.43%  read_bottleneck  [kernel.kallsyms]               [k] __entry_trampoline_start
+     0.43%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::WriteImpl
+     0.40%  read_bottleneck  [kernel.kallsyms]               [k] syscall_return_via_sysret
+     0.37%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Status::operator=
+     0.33%  read_bottleneck  [kernel.kallsyms]               [k] find_get_entry
+     0.33%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::HistogramBucketMapper::IndexForValue
+     0.33%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::Get
+     0.32%  read_bottleneck  libc-2.27.so                    [.] __clock_gettime
+     0.32%  read_bottleneck  [kernel.kallsyms]               [k] n_tty_write
+     0.31%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockIter<rocksdb::IndexValue>::CompareCurrentKey
+     0.31%  read_bottleneck  [kernel.kallsyms]               [k] queue_work_on
+     0.30%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockFetcher::ReadBlockContents
+     0.29%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::RecomputeSpliceLevels
+     0.29%  read_bottleneck  [vdso]                          [.] __vdso_gettimeofday
+     0.29%  read_bottleneck  [kernel.kallsyms]               [k] __radix_tree_lookup
+     0.29%  rocksdb:low0     libc-2.27.so                    [.] malloc
+     0.28%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::NextFromInput
+     0.28%  read_bottleneck  libstdc++.so.6.0.25             [.] __dynamic_cast
+     0.27%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::PosixEnv::NowNanos
+     0.25%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::Insert<false>
+     0.25%  rocksdb:low0     [kernel.kallsyms]               [k] do_syscall_64
+     0.23%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+     0.23%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::MergingIterator::Next
+     0.23%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WritableFileWriter::Append
+     0.23%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Version::Get
+     0.23%  read_bottleneck  [kernel.kallsyms]               [k] memset_erms
+     0.23%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::CoreLocalArray<rocksdb::StatisticsImpl::StatisticsData>::AccessElementAndIndex
+     0.23%  read_bottleneck  read_bottleneck_breakdown_test  [.] TLS init function for rocksdb::perf_context
+     0.23%  read_bottleneck  [kernel.kallsyms]               [k] crc32c_pcl_intel_update
+     0.22%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::FindGreaterOrEqual
+     0.22%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Env::Default
+     0.22%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockManager::UnLock
+     0.22%  read_bottleneck  libstdc++.so.6.0.25             [.] __cxxabiv1::__si_class_type_info::__do_dyncast
+     0.22%  read_bottleneck  libc-2.27.so                    [.] _IO_file_xsputn@@GLIBC_2.2.5
+     0.22%  read_bottleneck  libc-2.27.so                    [.] _IO_fwrite
+     0.21%  read_bottleneck  [kernel.kallsyms]               [k] _raw_spin_lock_irqsave
+     0.21%  rocksdb:low0     libc-2.27.so                    [.] _int_malloc
+     0.20%  read_bottleneck  [kernel.kallsyms]               [k] select_task_rq_fair
+     0.19%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::FindPointer
+     0.19%  read_bottleneck  [kernel.kallsyms]               [k] ext4_do_update_inode
+     0.19%  read_bottleneck  libc-2.27.so                    [.] sched_getcpu
+     0.19%  rocksdb:high0    libsnappy.so.1.1.7              [.] snappy::internal::CompressFragment
+     0.18%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace
+     0.18%  read_bottleneck  [kernel.kallsyms]               [k] __fget
+     0.18%  rocksdb:high0    [kernel.kallsyms]               [k] copy_user_enhanced_fast_string
+     0.17%  rocksdb:low0     [kernel.kallsyms]               [k] __block_commit_write.isra.34
+     0.17%  read_bottleneck  [kernel.kallsyms]               [k] tty_insert_flip_string_fixed_flag
+     0.16%  rocksdb:high0    libc-2.27.so                    [.] __memset_avx2_erms
+     0.16%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DataBlockIter::SeekImpl
+     0.16%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WritableFileWriter::WriteBuffered
+     0.16%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::Add
+     0.15%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompactionJob::ProcessKeyValueCompaction
+     0.15%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::KeyIsAfterNode
+     0.15%  read_bottleneck  [kernel.kallsyms]               [k] generic_file_read_iter
+     0.15%  read_bottleneck  [kernel.kallsyms]               [k] pty_write
+     0.15%  read_bottleneck  read_bottleneck_breakdown_test  [.] memcmp@plt
+     0.15%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::RandomAccessFileReader::Read
+     0.15%  read_bottleneck  libpthread-2.27.so              [.] __pthread_mutex_lock
+     0.15%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TableCache::Get
+     0.15%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockManager::GetLockMap
+     0.15%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableIterator::status
+     0.15%  read_bottleneck  [vdso]                          [.] __vdso_getcpu
+     0.14%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::FilePicker::GetNextFile
+     0.14%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::PosixEnv::NowMicros
+     0.14%  read_bottleneck  [kernel.kallsyms]               [k] _raw_spin_lock
+     0.14%  read_bottleneck  [kernel.kallsyms]               [k] __tty_buffer_request_room
+     0.14%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::log::Writer::AddRecord
+     0.14%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::StatisticsImpl::recordTick
+     0.14%  read_bottleneck  libstdc++.so.6.0.25             [.] std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<unsigned long>
+     0.14%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::StatisticsImpl::recordInHistogram
+     0.14%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::DataBlockIter::NextImpl
+     0.14%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::IndexBlockIter::ParseNextIndexKey
+     0.14%  read_bottleneck  libpthread-2.27.so              [.] __pthread_mutex_unlock
+     0.13%  read_bottleneck  [kernel.kallsyms]               [k] _cond_resched
+     0.13%  read_bottleneck  libstdc++.so.6.0.25             [.] std::ostream::sentry::sentry
+     0.13%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::OutputValidator::Add
+     0.13%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::GetImpl
+     0.13%  read_bottleneck  libc-2.27.so                    [.] __strlen_avx2
+     0.13%  rocksdb:low0     [kernel.kallsyms]               [k] get_page_from_freelist
+     0.13%  rocksdb:low0     [kernel.kallsyms]               [k] find_get_entry
+     0.13%  read_bottleneck  [kernel.kallsyms]               [k] crypto_shash_update
+     0.13%  read_bottleneck  [kernel.kallsyms]               [k] __block_commit_write.isra.34
+     0.13%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::KeyIsAfterNode
+     0.13%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__detail::_Prime_rehash_policy::_M_next_bkt
+     0.13%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::FindPointer
+     0.13%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::Data::Process
+     0.13%  read_bottleneck  [kernel.kallsyms]               [k] get_page_from_freelist
+     0.13%  read_bottleneck  [kernel.kallsyms]               [k] jbd2_journal_stop
+     0.12%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::StopWatch::~StopWatch
+     0.12%  rocksdb:high0    libc-2.27.so                    [.] cfree@GLIBC_2.2.5
+     0.12%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::Instance
+     0.12%  read_bottleneck  [kernel.kallsyms]               [k] ext4_da_write_end
+     0.12%  read_bottleneck  [kernel.kallsyms]               [k] rcu_all_qs
+     0.12%  rocksdb:low0     [kernel.kallsyms]               [k] crc32c_pcl_intel_update
+     0.12%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append
+     0.12%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::BytewiseComparatorImpl::Compare
+     0.12%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBuilder::Add
+     0.12%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::TransactionBaseImpl
+     0.11%  read_bottleneck  [kernel.kallsyms]               [k] __indirect_thunk_start
+     0.11%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DataBlockIter::NextImpl
+     0.11%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SkipList<rocksdb::WriteBatchIndexEntry*, rocksdb::WriteBatchEntryComparator const&>::SkipList
+     0.11%  read_bottleneck  [kernel.kallsyms]               [k] entry_SYSCALL_64_after_hwframe
+     0.11%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ConcurrentArena::AllocateAligned
+     0.11%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::Data::Process
+     0.11%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::GetFromBatchAndDB
+     0.11%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::NewDataBlockIterator<rocksdb::DataBlockIter>
+     0.11%  rocksdb:low0     [kernel.kallsyms]               [k] syscall_return_via_sysret
+     0.10%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Arena::Arena
+     0.10%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableInserter::PutCFImpl
+     0.10%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableIterator::NextAndGetResult
+     0.10%  read_bottleneck  [vdso]                          [.] 0x0000000000000974
+     0.10%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::Add
+     0.10%  read_bottleneck  [kernel.kallsyms]               [k] mutex_lock
+     0.10%  read_bottleneck  libstdc++.so.6.0.25             [.] operator new
+     0.10%  rocksdb:low0     [kernel.kallsyms]               [k] __entry_trampoline_start
+     0.10%  rocksdb:low0     [kernel.kallsyms]               [k] crypto_shash_update
+     0.10%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::HistogramStat::Add
+     0.10%  read_bottleneck  [kernel.kallsyms]               [k] vfs_write
+     0.10%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockIter<rocksdb::Slice>::CompareCurrentKey
+     0.10%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::port::PhysicalCoreID
+     0.10%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchInternal::InsertInto
+     0.10%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Status::operator=
+     0.10%  rocksdb:low0     [vdso]                          [.] __vdso_gettimeofday
+     0.10%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PerfStepTimer::Stop
+     0.10%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransactionDB::UnLock
+     0.09%  read_bottleneck  [vdso]                          [.] 0x0000000000000977
+     0.09%  read_bottleneck  read_bottleneck_breakdown_test  [.] ROCKSDB_XXH3p_64bits
+     0.09%  read_bottleneck  [kernel.kallsyms]               [k] update_load_avg
+     0.09%  read_bottleneck  libstdc++.so.6.0.25             [.] std::ostream::_M_insert<unsigned long>
+     0.09%  read_bottleneck  [kernel.kallsyms]               [k] start_this_handle
+     0.09%  read_bottleneck  [kernel.kallsyms]               [k] kmem_cache_alloc
+     0.09%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchInternal::Iterate
+     0.09%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::WriteToWAL
+     0.09%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransactionDB::Put
+     0.09%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransaction::TryLock
+     0.09%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::Insert
+     0.09%  read_bottleneck  [kernel.kallsyms]               [k] radix_tree_next_chunk
+     0.09%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PerfStepTimer::Start
+     0.09%  read_bottleneck  [kernel.kallsyms]               [k] tty_write
+     0.09%  read_bottleneck  [kernel.kallsyms]               [k] pagecache_get_page
+     0.09%  read_bottleneck  [kernel.kallsyms]               [k] ext4_inode_csum.isra.56
+     0.09%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WritableFileWriter::Flush
+     0.08%  read_bottleneck  [kernel.kallsyms]               [k] idle_cpu
+     0.08%  read_bottleneck  [kernel.kallsyms]               [k] ext4_da_write_begin
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::WriteToWAL
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] clock_gettime@plt
+     0.08%  read_bottleneck  [kernel.kallsyms]               [k] prepare_exit_to_usermode
+     0.08%  read_bottleneck  [kernel.kallsyms]               [k] common_file_perm
+     0.08%  rocksdb:low0     libc-2.27.so                    [.] __memcmp_avx2_movbe
+     0.08%  read_bottleneck  [kernel.kallsyms]               [k] do_output_char
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::EvictFromLRU
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::Get
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetVarint32PtrFallback
+     0.08%  rocksdb:high0    libc-2.27.so                    [.] malloc
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::find
+     0.08%  rocksdb:low0     [kernel.kallsyms]               [k] release_pages
+     0.08%  read_bottleneck  [kernel.kallsyms]               [k] try_to_wake_up
+     0.08%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__detail::_Prime_rehash_policy::_M_need_rehash
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransaction::Commit
+     0.08%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__ostream_insert<char, std::char_traits<char> >
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Block::~Block
+     0.08%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockManager::AcquireWithTimeout
+     0.08%  read_bottleneck  [kernel.kallsyms]               [k] sys_write
+     0.07%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::NextFromInput
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::LRU_Remove
+     0.07%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::crc32c::crc32c_3way
+     0.07%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create
+     0.07%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::ok
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] copy_page_to_iter
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] __activate_page
+     0.07%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace_aux
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ShardedCache::Lookup
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] fsnotify
+     0.07%  read_bottleneck  libc-2.27.so                    [.] _IO_do_write@@GLIBC_2.2.5
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::log::Writer::EmitPhysicalRecord
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] pty_write_room
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SuperVersionContext::Clean
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] ext4_block_write_begin
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::GetEntryFromCache
+     0.07%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_do_update_inode
+     0.07%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::WritableFileWriter::Append
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::NewIndexIterator
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] tty_flip_buffer_push
+     0.07%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::HistogramBucketMapper::IndexForValue
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Block::NewIndexIterator
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] tty_put_char
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] _raw_spin_unlock_irqrestore
+     0.07%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::WriteRawBlock
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::map<unsigned int, rocksdb::PerfContextByLevel, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, rocksdb::PerfContextByLevel> > >::operator[]
+     0.07%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockManager::UnLockKey
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] sys_pread64
+     0.07%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace
+     0.07%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_da_invalidatepage
+     0.07%  read_bottleneck  [kernel.kallsyms]               [k] workingset_activation
+     0.07%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::DataBlockIter::SeekToFirstImpl
+     0.07%  read_bottleneck  libstdc++.so.6.0.25             [.] std::_Hash_bytes
+     0.06%  rocksdb:low0     libpthread-2.27.so              [.] __pthread_mutex_unlock
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::Get
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteCommittedTxn::CommitWithoutPrepareInternal
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::MergeBatch
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransaction::PessimisticTransaction
+     0.06%  rocksdb:low0     [kernel.kallsyms]               [k] __test_set_page_writeback
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] get_mem_cgroup_from_mm
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InstrumentedMutex::Lock
+     0.06%  rocksdb:low0     libsnappy.so.1.1.7              [.] snappy::Compress
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetVarint64Ptr
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] ext4_get_group_desc
+     0.06%  rocksdb:low0     [kernel.kallsyms]               [k] generic_file_read_iter
+     0.06%  rocksdb:low0     [kernel.kallsyms]               [k] free_pcppages_bulk
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] clear_page_erms
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] __ext4_journal_start_sb
+     0.06%  read_bottleneck  libpthread-2.27.so              [.] __libc_pread64
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] insert_work
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] resched_curr
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::VerifyBlockChecksum
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::PreprocessWrite
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransactionDB::BeginInternalTransaction
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] mark_page_accessed
+     0.06%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableIterator::FindBlockForward
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::GetInstance
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] free_pcppages_bulk
+     0.06%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_bio_write_page
+     0.06%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CoreLocalArray<rocksdb::StatisticsImpl::StatisticsData>::AccessElementAndIndex
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatch::WriteBatch
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::PutUntracked
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] mutex_unlock
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::ExitAsBatchGroupLeader
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] __ext4_get_inode_loc
+     0.06%  read_bottleneck  libc-2.27.so                    [.] malloc_consolidate
+     0.06%  read_bottleneck  libstdc++.so.6.0.25             [.] operator new@plt
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] iov_iter_copy_from_user_atomic
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] enqueue_entity
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ReadRecordFromWriteBatch
+     0.06%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::StopWatch::StopWatch
+     0.06%  read_bottleneck  [kernel.kallsyms]               [k] generic_perform_write
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::EnterAsBatchGroupLeader
+     0.05%  rocksdb:low0     [kernel.kallsyms]               [k] _raw_spin_lock
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::NewDataBlockIterator<rocksdb::DataBlockIter>
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] jbd2__journal_start
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PosixWritableFile::Append
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::RandomAccessFileReader::Read
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::JoinBatchGroup
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_find_before_node
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] __fsnotify_parent
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] ext4_file_write_iter
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ReadOptions::ReadOptions
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockFetcher::ReadBlockContents
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<unsigned int, std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > >, std::allocator<std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > > >, std::__detail::_Select1st, std::equal_to<unsigned int>, std::hash<unsigned int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_insert_unique_node
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::IndexBlockIter::IndexBlockIter
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransaction::Initialize
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockHandle::DecodeFrom
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::HistogramStat::Add
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndexInternal::GetFromBatch
+     0.05%  rocksdb:low0     [kernel.kallsyms]               [k] iov_iter_fault_in_readable
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::status
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetLengthPrefixedSlice
+     0.05%  rocksdb:low0     [kernel.kallsyms]               [k] start_this_handle
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockManager::TryLock
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchInternal::InsertNoop
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] ext4_da_invalidatepage
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::PrepareOutput
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] ext4_nonda_switch
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Arena::AllocateAligned
+     0.05%  rocksdb:low0     [kernel.kallsyms]               [k] __radix_tree_lookup
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BinarySearchIndexReader::NewIterator
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::Get
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::ShouldFlushNow
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] __atime_needs_update
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Block::NewDataIterator
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::FlushScheduler::Empty
+     0.05%  rocksdb:low0     [kernel.kallsyms]               [k] radix_tree_next_chunk
+     0.05%  rocksdb:low0     libc-2.27.so                    [.] sched_getcpu
+     0.05%  rocksdb:low0     libstdc++.so.6.0.25             [.] memcpy@plt
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::FilePicker::PrepareNextLevel
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] ext4_inode_csum_set
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ColumnFamilyHandleImpl::GetComparator
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] __wake_up_common_lock
+     0.05%  read_bottleneck  libc-2.27.so                    [.] __strcmp_sse2_unaligned
+     0.05%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate
+     0.05%  read_bottleneck  libpthread-2.27.so              [.] __pthread_enable_asynccancel
+     0.05%  rocksdb:low0     [kernel.kallsyms]               [k] find_get_pages_range_tag
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::LRU_Insert
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] current_time
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] __virt_addr_valid
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::CompressAndVerifyBlock
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] __generic_file_write_iter
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PosixRandomAccessFile::Read
+     0.05%  read_bottleneck  [kernel.kallsyms]               [k] __find_get_block
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::IndexValue::DecodeFrom
+     0.05%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableIterator::Next
+     0.05%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompactionJob::SubcompactionState::ShouldStopBefore
+     0.05%  rocksdb:high0    [kernel.kallsyms]               [k] crc32c_pcl_intel_update
+     0.05%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableListVersion::GetFromList
+     0.05%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::TrackKey
+     0.05%  rocksdb:low0     [kernel.kallsyms]               [k] __radix_tree_create
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] check_preempt_curr
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] memcpy@plt
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] mem_cgroup_charge_statistics
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] __mark_inode_dirty
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] kmem_cache_free
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] map_id_up
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::IndexReaderCommon::GetOrReadIndexBlock
+     0.04%  rocksdb:high0    libc-2.27.so                    [.] _int_malloc
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] fput
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetContext::ReportCounters
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] __indirect_thunk_start
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] gettimeofday@plt
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_da_get_block_prep
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] security_file_permission
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] clear_page_dirty_for_io
+     0.04%  rocksdb:low0     libpthread-2.27.so              [.] __pthread_mutex_lock
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableInserter::SeekToColumnFamily
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::PutDataBlockToCache<rocksdb::Block>
+     0.04%  read_bottleneck  libc-2.27.so                    [.] __memset_avx2_unaligned_erms
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::port::Mutex::Lock
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] current_kernel_time64
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::FlushBlockBySizePolicy::Update
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::BytewiseComparatorImpl::CompareWithoutTimestamp
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] __mod_node_page_state
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::InternalKeyComparator::Compare
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockIter<rocksdb::Slice>::UpdateKey
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransactionDB::TryLock
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] _cond_resched
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] radix_tree_tag_set
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::Rep::ClearIndex
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::LevelIterator::NextAndGetResult
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableIterator::value
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] mark_buffer_dirty
+     0.04%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::Data::Process
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::FileIndexer::GetNextLevelIndex
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SaveValue
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] ext4_file_read_iter
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::Get
+     0.04%  read_bottleneck  [vdso]                          [.] 0x000000000000098d
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_emplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rocksdb::LockInfo>
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] generic_write_end
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] aa_file_perm
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_block_write_begin
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::erase
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] tty_write_room
+     0.04%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::BytewiseComparatorImpl::Compare
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::NotifyCollectTableCollectorsOnAdd
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] operator delete@plt
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Block::Block
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] release_pages
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadStatusUtil::TEST_StateDelay
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetColumnFamilyUserComparator
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::CachableEntry<rocksdb::Block>::ReleaseResource
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*> >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*>
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::InvokeFilterIfNeeded
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] rw_verify_area
+     0.04%  read_bottleneck  libc-2.27.so                    [.] __malloc_usable_size
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockManager::AcquireLocked
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Arena::~Arena
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatch::Clear
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::Insert
+     0.04%  read_bottleneck  libpthread-2.27.so              [.] __pthread_disable_asynccancel
+     0.04%  rocksdb:low0     libstdc++.so.6.0.25             [.] operator new
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] vfs_read
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::StaticMeta::Get
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::FileMetaData::UpdateBoundaries
+     0.04%  read_bottleneck  libc-2.27.so                    [.] @plt
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string
+     0.04%  rocksdb:low0     libc-2.27.so                    [.] __strlen_avx2
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::Clear
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] kmem_cache_alloc
+     0.04%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBuilder::Add
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.04%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::Release
+     0.04%  rocksdb:low0     [kernel.kallsyms]               [k] __fget
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::Process
+     0.04%  read_bottleneck  libstdc++.so.6.0.25             [.] malloc@plt
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::UpdateCacheMissMetrics
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.04%  read_bottleneck  [kernel.kallsyms]               [k] __queue_work
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::LockInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node
+     0.04%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::UpdateCacheHitMetrics
+     0.04%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_da_write_end
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::IndexBlockIter::NextImpl
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DataBlockIter::~DataBlockIter
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] operator new@plt
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] native_irq_return_iret
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::AllocateNode
+     0.03%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::MemTableIterator::key
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ColumnFamilyData::GetThreadLocalSuperVersion
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockTracker::GetKeyIterator
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Block::ApproximateMemoryUsage
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TrimHistoryScheduler::Empty
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] kmem_cache_free
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] ttwu_do_wakeup
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] jbd2_journal_stop
+     0.03%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::GetEnv
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Block::NewDataIterator
+     0.03%  rocksdb:high0    [kernel.kallsyms]               [k] __block_commit_write.isra.34
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] tty_buffer_space_avail
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] operator delete@plt
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] enqueue_task_fair
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::IOStatus::operator=
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockIter<rocksdb::IndexValue>::status
+     0.03%  rocksdb:high0    [kernel.kallsyms]               [k] release_pages
+     0.03%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __mod_node_page_state
+     0.03%  rocksdb:high0    [kernel.kallsyms]               [k] crypto_shash_update
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] drop_buffers
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::port::Mutex::Unlock
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] memcmp@plt
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __sb_start_write
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::StopWatch::~StopWatch
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::GetCacheKey
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] handle_mm_fault
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Cleanable::~Cleanable
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PerfStepTimer::Stop
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] common_file_perm
+     0.03%  read_bottleneck  libstdc++.so.6.0.25             [.] fwrite@plt
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::WriteBatchWithIndex
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] activate_page
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockIter<rocksdb::Slice>::FindKeyAfterBinarySeek
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::SkipListRep::Allocate
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] delete_from_page_cache_batch
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::find
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] kthread_data
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] percpu_counter_add_batch
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::autovector<unsigned long, 8ul>::assign
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Cleanable::RegisterCleanup
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] __ext4_get_inode_loc
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] unlock_page
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] mark_page_accessed
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetContext::GetContext
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::PosixEnv::NowMicros
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __mod_zone_page_state
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] copy_page_to_iter
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] account_entity_enqueue
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::LinkOne
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchInternal::Put
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_da_write_begin
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCache::GetShard
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PerfStepTimer::Stop
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LockMap::GetStripe
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] map_id_up
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::PosixRandomAccessFile::Read
+     0.03%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_do_update_inode
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatch::Put
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetColumnFamilyID
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] ext4_journal_check_start
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] swapgs_restore_regs_and_return_to_usermode
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] copy_user_generic_unrolled
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] new_sync_write
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::ShardedCache::Lookup
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::LevelIterator::status
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WBWIIteratorImpl::SeekToLast
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::UpdateOldestKeyTime
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] mpage_process_page_bufs
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] node_dirty_ok
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __alloc_pages_nodemask
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] radix_tree_lookup_slot
+     0.03%  read_bottleneck  libpthread-2.27.so              [.] pthread_cond_broadcast@@GLIBC_2.3.2
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Sp_counted_deleter<rocksdb::Snapshot const*, std::_Bind<void (rocksdb::TransactionBaseImpl::*(rocksdb::TransactionBaseImpl*, std::_Placeholder<1>, rocksdb::DB*))(rocksdb::Snapshot const*, rocksdb::DB*)>, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>::_M_dispose
+     0.03%  rocksdb:high0    [kernel.kallsyms]               [k] get_page_from_freelist
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __ext4_journal_stop
+     0.03%  read_bottleneck  libstdc++.so.6.0.25             [.] std::ostream::sentry::~sentry
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > >, false> > >::_M_allocate_buckets
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __do_page_fault
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InternalKeyComparator::Compare
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __ext4_handle_dirty_metadata
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::Insert
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __getblk_gfp
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockIter<rocksdb::IndexValue>::Seek
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] __slab_free
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ColumnFamilyMemTablesImpl::Seek
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] file_update_time
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] try_to_free_buffers
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __update_load_avg_se.isra.38
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::ShortenedIndexBuilder::AddIndexEntry
+     0.03%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::Add
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::VersionSet::SetLastSequence
+     0.03%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::WritableFileWriter::Append
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::GetDataBlockFromCache<rocksdb::Block>
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::SetSnapshotInternal
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetContext::SaveValue
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] block_invalidatepage
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::FSWritableFile::PrepareWrite
+     0.03%  rocksdb:low0     [vdso]                          [.] __vdso_clock_gettime
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] new_sync_read
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] __pagevec_lru_add_fn
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::Release
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] __fget_light
+     0.03%  rocksdb:low0     read_bottleneck_breakdown_test  [.] TLS init function for rocksdb::perf_context
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] iov_iter_copy_from_user_atomic
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] aa_file_perm
+     0.03%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockCacheLookupContext::~BlockCacheLookupContext
+     0.03%  read_bottleneck  [kernel.kallsyms]               [k] activate_task
+     0.03%  rocksdb:low0     [kernel.kallsyms]               [k] __add_to_page_cache_locked
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] __alloc_pages_nodemask
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] page_mapping
+     0.02%  read_bottleneck  libc-2.27.so                    [.] _IO_file_write@@GLIBC_2.2.5
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] find_get_entries
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::WriteStatusCheck
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x000000000010762e
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableList::HasHistory
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<unsigned int, std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > >, std::allocator<std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > > >, std::__detail::_Select1st, std::equal_to<unsigned int>, std::hash<unsigned int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::clear
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] ROCKSDB_XXH3p_64bits
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] memcpy@plt
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::MemTableInsertStatusCheck
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::Clear
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::GetDataBlockFromCache<rocksdb::Block>
+     0.02%  rocksdb:low0     libsnappy.so.1.1.7              [.] snappy::internal::WorkingMemory::GetHashTable
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] ext4_reserve_inode_write
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Cleanable::Cleanable
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] free@plt
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] task_numa_fault
+     0.02%  read_bottleneck  libc-2.27.so                    [.] _IO_file_overflow@@GLIBC_2.2.5
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] __dynamic_cast@plt
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::InternalKeyComparator::FindShortestSeparator
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] sys_pread64
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] __test_set_page_writeback
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] sched_getcpu@plt
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __brelse
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockTracker::Track
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::RecordTick
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] add_transaction_credits
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::CompareAndSwap
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<unsigned long, std::pair<unsigned long const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*> > >, std::allocator<std::pair<unsigned long const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*> > > >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::~_Hashtable
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] block_write_end
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::UnPackIndexTypeAndNumRestarts
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] find_get_pages_range
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::xsputn
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] entry_SYSCALL_64_stage2
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] do_numa_page
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] entry_SYSCALL_64_after_hwframe
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::Next
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] error_entry
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] ldsem_down_read
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SkipList<rocksdb::WriteBatchIndexEntry*, rocksdb::WriteBatchEntryComparator const&>::FindGreaterOrEqual
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] std::ostream::sentry::sentry@plt
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] free_unref_page_list
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] grab_cache_page_write_begin
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] unmap_page_range
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] pthread_cond_broadcast@plt
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] __fsnotify_parent
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] mark_buffer_dirty
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] ext4_mark_inode_dirty
+     0.02%  rocksdb:low0     libstdc++.so.6.0.25             [.] malloc@plt
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] ktime_get_real_seconds
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ShardedCache::Insert
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] prepare_exit_to_usermode
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] jbd2__journal_start
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PinnedIteratorsManager::~PinnedIteratorsManager
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] __find_get_block
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __pagevec_lru_add_fn
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::port::PhysicalCoreID
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] memcpy@plt
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::MergingIterator::value
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __inc_node_state
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::crc32c::Extend
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::CompressionContextCache::InitSingleton
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] truncate_inode_pages_range
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableIterator::FindKeyForward
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SuperVersionContext::~SuperVersionContext
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] start_this_handle
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] touch_atime
+     0.02%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::ok
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] free_pcppages_bulk
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] __mark_inode_dirty
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create@plt
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] __pagevec_lru_add_fn
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] __wake_up_common_lock
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] memcpy_erms
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] ext4_da_get_block_prep
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::MergingIterator::key
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteCommittedTxnDB::BeginTransaction
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::StatisticsImpl::recordTick
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] timespec_trunc
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::HistogramStat::Merge
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] pagevec_lru_move_fn
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SetPerfLevel
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableIterator::CheckOutOfBound
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] down_write_trylock
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::WriteBlock
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] iov_iter_fault_in_readable
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::resize@plt
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Hash64
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] ext4_dirty_inode
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::RecordTick
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] unlock_page
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] vfs_read
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::GetFromBatchAndDB
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] generic_write_end
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::EvictFromLRU
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_inode_csum.isra.56
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::ReadOptions::ReadOptions
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __page_cache_alloc
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::IndexBlockIter::~IndexBlockIter
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] balance_dirty_pages_ratelimited
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::FSWritableFile::PrepareWrite
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] page_mapping
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_bio_write_page
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchInternal::AppendedByteSize
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo>, true> > >::_M_deallocate_node
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] page_cache_tree_insert
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompressData
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] copyout
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __check_object_size
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::StaticMeta::CompareAndSwap
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableListVersion::Get
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __radix_tree_replace
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PosixWritableFile::use_direct_io
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableIterator::InitDataBlock
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::StatisticsImpl::recordInHistogram
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] _raw_spin_lock_irqsave
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::EncodeVarint32
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::BytewiseComparatorImpl::FindShortestSeparator
+     0.02%  rocksdb:low0     [vdso]                          [.] __vdso_getcpu
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::CachableEntry<rocksdb::Block>::SetCachedValue
+     0.02%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::MemTableIterator::Next
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] account_page_dirtied
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] pagecache_get_page
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::SkipListRep::Get
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_da_invalidatepage
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_journal_check_start
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] bio_add_page
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransaction::Clear
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__lower_bound<rocksdb::FdWithKeyRange*, rocksdb::Slice, __gnu_cxx::__ops::_Iter_comp_val<rocksdb::(anonymous namespace)::FindFileInRange(rocksdb::InternalKeyComparator const&, rocksdb::LevelFilesBrief const&, rocksdb::Slice const&, unsigned int, unsigned int)::{lambda(rocksdb::FdWithKeyRange const&, rocksdb::Slice const&)#1}> >
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockTracker::GetPointLockStatus
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __fdget_pos
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ShardedCache::Release
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] percpu_counter_add_batch
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DB::GetRootDB
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::resize
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] create_empty_buffers
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] find_get_pages_range_tag
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x0000000000107620
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__detail::_Map_base<unsigned int, std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > >, std::allocator<std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > > >, std::__detail::_Select1st, std::equal_to<unsigned int>, std::hash<unsigned int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::at
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockIter<rocksdb::IndexValue>::UpdateKey
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SuperVersionContext::SuperVersionContext
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] __ext4_journal_start_sb
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LookupKey::LookupKey
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] __wake_up_bit
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] entry_SYSCALL_64_stage2
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Block::IndexType
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] radix_tree_lookup_slot
+     0.02%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace_aux
+     0.02%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteCommittedTxn::~WriteCommittedTxn
+     0.02%  read_bottleneck  libc-2.27.so                    [.] __GI___libc_write
+     0.02%  rocksdb:low0     libpthread-2.27.so              [.] __pthread_enable_asynccancel
+     0.02%  rocksdb:low0     libpthread-2.27.so              [.] __libc_pread64
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] add_to_page_cache_lru
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append@plt
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::StopWatchNano::StopWatchNano
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace@plt
+     0.02%  read_bottleneck  libpthread-2.27.so              [.] __libc_write
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] iov_iter_advance
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] sync_regs
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __check_heap_object
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] __vfs_write
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] account_page_dirtied
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] ext4_write_checks
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatch::~WriteBatch
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockManager::GetLockTrackerFactory
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::UpdateCacheMissMetrics
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] down_read
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] node_dirty_ok
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] ttwu_do_activate
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] perf_event_task_tick
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableInserter::PutCF
+     0.02%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::status
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] from_kgid
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::GetVarint32PtrFallback
+     0.02%  read_bottleneck  [vdso]                          [.] 0x0000000000000970
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Slice::ToString[abi:cxx11]
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockTracker::GetColumnFamilyIterator
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] native_queued_spin_lock_slowpath
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] rcu_all_qs
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] 0x0000000000030ab0
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] file_remove_privs
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::CachableEntry<rocksdb::UncompressionDict>::ReleaseResource
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] jbd2__journal_start
+     0.02%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::OutputValidator::Add
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] node_tag_clear
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ColumnFamilyMemTablesImpl::GetMemTable
+     0.02%  rocksdb:high0    libc-2.27.so                    [.] __memcmp_avx2_movbe
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] change_protection_range
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] truncate_inode_pages_range
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] process_echoes
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] mpage_process_page_bufs
+     0.02%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_da_write_end
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_emplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rocksdb::TrackedKeyInfo>
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::IndexValue::EncodeTo
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] operator new[]@plt
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBuilder::EstimateSizeAfterKV
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] unlock_buffer
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] block_invalidatepage
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] pagevec_lru_move_fn
+     0.02%  read_bottleneck  [kernel.kallsyms]               [k] alloc_pages_current
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] strlen@plt
+     0.02%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::GetVarint32PtrFallback
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::condition_variable::notify_all@plt
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::Swap
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] add_transaction_credits
+     0.02%  rocksdb:high0    libstdc++.so.6.0.25             [.] operator new
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::NewRangeTombstoneIterator
+     0.02%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Status::operator=
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Block::IndexType
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] mem_cgroup_update_lru_size
+     0.02%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::io_status
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] node_page_state
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] try_charge
+     0.02%  rocksdb:low0     [kernel.kallsyms]               [k] __getblk_gfp
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] find_get_entries
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] generic_perform_write
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::GetCacheKey
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] llist_del_first
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_da_write_begin
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_da_get_block_prep
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::LevelIterator::value
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] up_read
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] alloc_page_buffers
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __ext4_journal_stop
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::WriteRawBlock
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace_aux@plt
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] _cond_resched
+     0.01%  rocksdb:high0    libstdc++.so.6.0.25             [.] memcpy@plt
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::clear
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::PosixEnv::NowNanos
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] fsnotify
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] _raw_spin_lock
+     0.01%  rocksdb:low0     libsnappy.so.1.1.7              [.] snappy::RawCompress
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] copyin
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::ReadBlockFromFile<rocksdb::Block>
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::ostream::_M_insert<long>
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::BytewiseComparatorImpl::FindShortestSeparator
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransaction::~PessimisticTransaction
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] mutex_trylock
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __atime_needs_update
+     0.01%  read_bottleneck  libc-2.27.so                    [.] __libc_enable_asynccancel
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::GetEntryFromCache
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::get_perf_context
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] inc_zone_page_state
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] mpage_map_and_submit_buffers
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] workingset_update_node
+     0.01%  read_bottleneck  libc-2.27.so                    [.] __mempcpy_avx_unaligned_erms
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::CachableEntry<rocksdb::Block>::ReleaseCacheHandle
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBuilder::Finish
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_mark_iloc_dirty
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::MemTableIterator::value
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] clear_page_dirty_for_io
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::ostream::sentry::~sentry@plt
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CachableEntry<rocksdb::Block>::DeleteValue
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockFetcher::~BlockFetcher
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionDBMutexImpl::TryLockFor
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __add_to_page_cache_locked
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::NewRangeTombstoneIterator
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] generic_write_checks
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] vmacache_find
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::SkipListRep::InsertKey
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] radix_tree_tag_set
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Block::ApproximateMemoryUsage
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ColumnFamilyData::ReturnThreadLocalSuperVersion
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_nonda_switch
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __lru_cache_add
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__ostream_insert<char, std::char_traits<char> >@plt
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create@plt
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __radix_tree_preload
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __radix_tree_replace
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x00000000001079b0
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __radix_tree_create
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string
+     0.01%  read_bottleneck  libc-2.27.so                    [.] __libc_disable_asynccancel
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] rb_insert_color_cached
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PerfStepTimer::Stop
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] jbd2_journal_dirty_metadata
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] replace_slot
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] jbd2_journal_try_to_free_buffers
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::Get
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::ostream::_M_insert<long>@plt
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::ShardedCache::Release
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::UpdateFlushState
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] pthread_mutex_lock@plt
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::FullFilterKeyMayMatch
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::Flush
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] create_empty_buffers
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] mem_cgroup_try_charge
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] ext4_inode_table
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] iov_iter_advance
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::HistogramBucketMapper::IndexForValue
+     0.01%  rocksdb:low0     libpthread-2.27.so              [.] __pthread_disable_asynccancel
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] tty_write_unlock
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x00000000001079b8
+     0.01%  rocksdb:low0     libsnappy.so.1.1.7              [.] snappy::RawUncompress
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::GetInstance
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::Next
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] update_rq_clock
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_es_lookup_extent
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] pfn_pte
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] _raw_spin_unlock_irqrestore
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] get_task_policy.part.31
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] mpage_submit_page
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __unlock_page_memcg
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] lock_page_memcg
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] page_mapped
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ahci_qc_prep
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<unsigned int, std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > >, std::allocator<std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > > >, std::__detail::_Select1st, std::equal_to<unsigned int>, std::hash<unsigned int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_rehash
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::locale::id::_M_id
+     0.01%  rocksdb:high0    libsnappy.so.1.1.7              [.] snappy::internal::WorkingMemory::GetHashTable
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::StopWatch::StopWatch
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] blk_rq_map_sg
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] kmem_cache_alloc
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] page_cache_tree_insert
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] jbd2_journal_stop
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_nonda_switch
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::PackIndexTypeAndNumRestarts
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x00000000001079eb
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ColumnFamilyHandleImpl::cfd
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::CompressionContextCache::Instance
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::GetLatestSequenceNumber
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] try_to_free_buffers
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::Writer::FinalStatus
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] delete_node
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BuildTable
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] try_charge
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::WriteGroup::Iterator::operator++
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Sp_counted_deleter<rocksdb::Snapshot const*, std::_Bind<void (rocksdb::TransactionBaseImpl::*(rocksdb::TransactionBaseImpl*, std::_Placeholder<1>, rocksdb::DB*))(rocksdb::Snapshot const*, rocksdb::DB*)>, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>::_M_destroy
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] create_empty_buffers
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] memset_erms
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] memset_erms
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompressBlock
+     0.01%  read_bottleneck  [vdso]                          [.] 0x0000000000000971
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::UpdateCacheHitMetrics
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::Lookup
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::~_Hashtable
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::WriteBlock
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockHandle::EncodeTo
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __es_insert_extent
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PosixRandomAccessFile::use_direct_io
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] workingset_activation
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::GetPerfLevel
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] find_get_pages_range
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create@plt
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::InternalKeyComparator::FindShortestSeparator
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] native_sched_clock
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __enqueue_entity
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_find_before_node
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] block_invalidatepage
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Block::NumRestarts
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_file_read_iter
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTable::GetFromTable
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_reserve_inode_write
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] node_tag_set
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] free_unref_page_prepare.part.65
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::condition_variable::notify_all
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] mpage_prepare_extent_to_map
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] select_idle_sibling
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::UncompressionDict::GetEmptyDict
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] memmove@plt
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::WriteContext::~WriteContext
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] lock_page_memcg
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] new_sync_read
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionDBCondVarImpl::NotifyAll
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::SetState
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] down_read
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::NotifyCollectTableCollectorsOnAdd
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] apparmor_file_permission
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::~TransactionBaseImpl
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve@plt
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] delete_from_page_cache_batch
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::Remove
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] wake_up_bit
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] page_mapping
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] radix_tree_tag_set
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] ext4_mark_iloc_dirty
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::PrepareOutput
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DataBlockIter::value
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::StaticMeta::GetThreadLocal
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign@plt
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::InternalStats::AddDBStats
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] mem_cgroup_try_charge
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::Writer::~Writer
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::ShortenedIndexBuilder::AddIndexEntry
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] jbd2_journal_grab_journal_head
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] find_get_entries
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_rehash
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] block_write_end
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] mem_cgroup_update_lru_size
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] _raw_spin_lock_irqsave
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] shmem_mapping
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] ext4_finish_bio
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_mark_inode_dirty
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::StatisticsImpl::HistEnabledForType
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] memcg_check_events
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __wake_up_common
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __radix_tree_create
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<unsigned long const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*> > >, false> > >::_M_allocate_buckets
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] pthread_mutex_unlock@plt
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __brelse
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionDBMutexImpl::UnLock
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ColumnFamilySet::NumberOfColumnFamilies
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] percpu_counter_add_batch
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] rcu_all_qs
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] up_write
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::Lookup
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] try_charge
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::InitBlockIterator<rocksdb::DataBlockIter>
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] decay_load
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::locale::id::_M_id@plt
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate@plt
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __find_get_block
+     0.01%  rocksdb:high0    [vdso]                          [.] __vdso_gettimeofday
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] wait_for_stable_page
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] tag_pages_for_writeback
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::GetVarint64Ptr
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] wait_for_stable_page
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::InitSingletons
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_update_bh_state
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] jbd2_journal_dirty_metadata
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::~WriteBatchWithIndex
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::ReleaseSnapshot
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __ext4_get_inode_loc
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::resize@plt
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MergeContext::~MergeContext
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_mark_inode_dirty
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_inode_csum_set
+     0.01%  rocksdb:low0     [vdso]                          [.] 0x0000000000000974
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBuilder::Finish
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::CompressAndVerifyBlock
+     0.01%  rocksdb:high0    libc-2.27.so                    [.] __strlen_avx2
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __slab_free
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] truncate_cleanup_page
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] delete_node
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] PageHuge
+     0.01%  rocksdb:high0    libsnappy.so.1.1.7              [.] snappy::Compress
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] alloc_page_buffers
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] clean_bdev_aliases
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] mem_cgroup_commit_charge
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] clear_page_erms
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_journal_check_start
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x00000000001079d8
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] prepare_exit_to_usermode
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] ext4_inode_block_valid
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] from_kuid
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] radix_tree_tag_clear
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __indirect_thunk_start
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_es_can_be_merged
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] up_read
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __activate_page
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] iov_iter_fault_in_readable
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] page_cache_free_page.isra.30
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __wake_up
+     0.01%  rocksdb:low0     libstdc++.so.6.0.25             [.] operator delete
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __x86_indirect_thunk_r10
+     0.01%  rocksdb:low0     libsnappy.so.1.1.7              [.] memcpy@plt
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Block::Block
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] apparmor_file_permission
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] operator delete
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __ext4_handle_dirty_metadata
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append@plt
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] ldsem_up_read
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_get_group_desc
+     0.01%  rocksdb:low0     libstdc++.so.6.0.25             [.] memset@plt
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] mark_buffer_dirty
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] account_page_dirtied
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] TLS init function for rocksdb::perf_context
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] _raw_spin_lock_irq
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] page_remove_rmap
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] copyin
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] iov_iter_copy_from_user_atomic
+     0.01%  rocksdb:high0    libc-2.27.so                    [.] sched_getcpu
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] find_vma
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __x86_indirect_thunk_r12
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] clean_bdev_aliases
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] tty_paranoia_check
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::Writer::ShouldWriteToMemtable
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::Remove
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::VerifyBlockChecksum
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] node_tag_clear
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] unlock_page
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::IndexBlockIter::value
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] mem_cgroup_uncharge_list
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_dirty_inode
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] drop_buffers
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hash_bytes@plt
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] unlock_page_memcg
+     0.01%  read_bottleneck  [vdso]                          [.] __vdso_time
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::static_cast_with_check<rocksdb::ColumnFamilyHandleImpl, rocksdb::ColumnFamilyHandle>
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] replace_slot
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] sched_getcpu@plt
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __f_unlock_pos
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_es_lookup_extent
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::ostream::_M_insert<unsigned long>@plt
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __radix_tree_lookup
+     0.01%  rocksdb:low0     libc-2.27.so                    [.] _itoa_word
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] operator delete@plt
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatch::Iterate
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] memcg_kmem_put_cache
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchInternal::Count
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] update_cfs_group
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::WriteBlock
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] wq_worker_waking_up
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_reserve_inode_write
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ParseInternalKey
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] lock_page_memcg
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] pread@plt
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] hrtick_update
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] update_cfs_rq_h_load
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] alloc_pages_current
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __ext4_journal_start_sb
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::NewIterator
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::ostream::operator<<@plt
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] strcmp@plt
+     0.01%  rocksdb:high0    [vdso]                          [.] __vdso_getcpu
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] activate_page
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WBWIIteratorImpl::~WBWIIteratorImpl
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteController::IsStopped
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::GetWriteBatch
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::EncodeVarint32
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] radix_tree_clear_tags
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] jbd2_journal_get_write_access
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] _copy_from_user
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] mem_cgroup_charge_statistics
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_has_free_clusters
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __dquot_alloc_space
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::Get
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] jbd2_journal_grab_journal_head
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] page_cache_tree_insert
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteCommittedTxn::WriteCommittedTxn
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] do_syscall_64
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] clean_bdev_aliases
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::crc32c::Extend
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::GetDataSize
+     0.01%  rocksdb:low0     [vdso]                          [.] 0x0000000000000977
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::port::Mutex::AssertHeld
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] end_page_writeback
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] std::__detail::_Prime_rehash_policy::_M_next_bkt@plt
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] alloc_buffer_head
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::TrackedKeysIterator::Next
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ThreadLocalPtr::StaticMeta::Swap
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] trigger_load_balance
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] memcpy
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __mod_zone_page_state
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] radix_tree_lookup
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::DefaultColumnFamily
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] update_curr
+     0.01%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::swap
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_inode_csum_set
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PosixWritableFile::GetFileSize
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] try_to_release_page
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] security_file_permission
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::Flush
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] generic_write_end
+     0.01%  read_bottleneck  ld-2.27.so                      [.] do_lookup_x
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Random::GetTLSInstance
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] handle_mm_fault
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ipt_do_table
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __x86_indirect_thunk_r10
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] rw_verify_area
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::ForceReleaseCachedEntry
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::port::Mutex::Unlock
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] _raw_read_lock
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] handle_mm_fault
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] jbd2_journal_get_write_access
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] mark_page_accessed
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] balance_dirty_pages_ratelimited
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::NotifyCollectTableCollectorsOnBlockAdd
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] sg_next
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] page_counter_try_charge
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] radix_tree_maybe_preload
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::Process
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __page_cache_alloc
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] run_posix_cpu_timers
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::StopWatchNano::StopWatchNano
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] radix_tree_tag_clear
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] rcu_check_callbacks
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::SetPerfLevel
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::UpdateCacheInsertionMetrics
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] tty_ldisc_deref
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] operator new@plt
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __radix_tree_preload
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __lru_cache_add
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_ext_remove_space
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] __set_page_dirty
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::DeleteCachedEntry<rocksdb::Block>
+     0.01%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x0000000000107613
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] intel_pmu_disable_all
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __wake_up
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append@plt
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] unaccount_page_cache_page
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] native_write_msr
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] dec_zone_page_state
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __bio_add_page
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] generic_perform_write
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] mpage_submit_page
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] blk_rq_map_sg
+     0.01%  rocksdb:low0     libstdc++.so.6.0.25             [.] operator new@plt
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] mpage_prepare_extent_to_map
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_dirty_inode
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchInternal::IsLatestPersistentState
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] pagevec_lookup_range
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] mem_cgroup_page_lruvec
+     0.01%  rocksdb:high0    libc-2.27.so                    [.] _IO_default_xsputn
+     0.01%  rocksdb:low0     libc-2.27.so                    [.] __memset_avx2_unaligned_erms
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::HistogramStat::Add
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] kmem_cache_free
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_block_write_begin
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::SetSnapshotIfNeeded
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Block::NumRestarts
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] ahci_qc_prep
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] map_id_up
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace@plt
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CachableEntry<rocksdb::Block>::SetOwnedValue
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __slab_free
+     0.01%  rocksdb:high0    libc-2.27.so                    [.] vfprintf
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::TableCache::GetTableReader
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Cleanable::RegisterCleanup
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __mark_inode_dirty
+     0.01%  rocksdb:low0     libc-2.27.so                    [.] vfprintf
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] ext4_releasepage
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __handle_mm_fault
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] try_to_release_page
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __handle_mm_fault
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] native_irq_return_iret
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] uncharge_page
+     0.01%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::IndexValue::DecodeFrom
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] mem_cgroup_update_lru_size
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] __mod_node_page_state
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] shmem_mapping
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] unaccount_page_cache_page
+     0.01%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::basic_streambuf<char, std::char_traits<char> >::xsputn
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] __fdget
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] mem_cgroup_commit_charge
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] cpu_load_update
+     0.01%  read_bottleneck  [kernel.kallsyms]               [k] remove_wait_queue
+     0.01%  rocksdb:low0     [kernel.kallsyms]               [k] error_entry
+     0.01%  rocksdb:high0    [kernel.kallsyms]               [k] get_mem_cgroup_from_mm
+     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::HistogramStat::HistogramStat
+     0.01%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::StatisticsImpl::recordTick
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ___slab_alloc
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::ShortenedIndexBuilder::OnKeyAdded
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] jbd2_journal_dirty_metadata
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] _raw_read_lock
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] workingset_update_node
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] from_kgid
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::InvokeFilterIfNeeded
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] radix_tree_lookup_slot
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::Insert
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] find_get_pages_range
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] timespec_trunc
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ___slab_alloc
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::UnPackIndexTypeAndNumRestarts
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] memcg_check_events
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] add_to_page_cache_lru
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::CompactionRangeDelAggregator::ShouldDelete
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] smp_call_function_many
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] gettimeofday@plt
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] mem_cgroup_page_lruvec
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] uncharge_batch
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __wake_up_common_lock
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] balance_dirty_pages_ratelimited
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_invalidatepage
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] sync_regs
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] radix_tree_next_chunk
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] unlock_buffer
+     0.00%  rocksdb:high0    libsnappy.so.1.1.7              [.] snappy::RawCompress
+     0.00%  rocksdb:high0    libsnappy.so.1.1.7              [.] snappy::RawUncompress
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] dec_zone_page_state
+     0.00%  rocksdb:low0     libsnappy.so.1.1.7              [.] memset@plt
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] free_buffer_head
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] update_load_avg
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] cfq_dispatch_requests
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::DBPropertyInfo>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::DBPropertyInfo> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::~_Hashtable
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] touch_atime
+     0.00%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::resize
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] mem_cgroup_uncharge_list
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] crc_42
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] account_page_cleaned
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] page_cache_free_page.isra.30
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] truncate_cleanup_page
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::port::Mutex::Lock
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::FileMetaData::UpdateBoundaries
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] node_dirty_ok
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] page_mapped
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] wait_for_stable_page
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::InitBlockIterator<rocksdb::DataBlockIter>
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] node_tag_clear
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] free_unref_page_commit
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __do_page_fault
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] delete_node
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::VersionSet::ProcessManifestWrites
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __wake_up_bit
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::EncodeVarint32
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] queued_read_lock_slowpath
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBuilder::EstimateSizeAfterKV
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __ext4_journal_get_write_access
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __radix_tree_replace
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] jbd2_write_access_granted.part.9
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __generic_file_write_iter
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_inode_table
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] grab_cache_page_write_begin
+     0.00%  rocksdb:low0     libsnappy.so.1.1.7              [.] operator delete[]@plt
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __set_page_dirty
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] _vm_normal_page
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] policy_nodemask
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] do_numa_page
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::ThreadStatusUpdater::GetLocalThreadStatus
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] native_irq_return_iret
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::Version::Version
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] memset
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::FlushBlockBySizePolicy::Update
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] iov_iter_init
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] pagecache_get_page
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] account_page_cleaned
+     0.00%  rocksdb:high0    [vdso]                          [.] __vdso_clock_gettime
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_ext_insert_extent
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] add_to_page_cache_lru
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] add_transaction_credits
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_es_insert_extent
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] 0x0000000000030ab0
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] page_cpupid_xchg_last
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ext4_ext_tree_init
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>@plt
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] get_cached_acl
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] do_futex
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteThread::CreateMissingNewerLinks
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] change_protection_range
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] drop_buffers
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::VersionSet::GetObsoleteFiles
+     0.00%  read_bottleneck  libc-2.27.so                    [.] __GI___printf_fp_l
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCache::Value
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __softirqentry_text_start
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] migrate_misplaced_page
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] get_pwq.isra.20
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __vfs_read
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] get_work_pool
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] do_page_fault
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] add_wait_queue
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] alloc_buffer_head
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __page_cache_alloc
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::TrackedKeysIterator::HasNext
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_inode_csum.isra.56
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchInternal::SetSequence
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WBWIIteratorImpl::Valid
+     0.00%  rocksdb:high0    libsnappy.so.1.1.7              [.] memcpy@plt
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x00000000001079e5
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] futex_wake
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __inc_zone_state
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] irq_exit
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] swiotlb_unmap_sg_attrs
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] numamigrate_update_ratelimit
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] deactivate_task
+     0.00%  rocksdb:low0     [vdso]                          [.] __vdso_time
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] check_stack_object
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __cmpxchg_double_slab.isra.34
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::WriteBlock
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] update_blocked_averages
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] account_user_time
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] memset@plt
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] switch_to_thread_stack
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __mnt_is_readonly.part.13
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] tick_sched_do_timer
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __inc_zone_state
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __kernel_fpu_begin
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __accumulate_pelt_segments
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] dequeue_task_fair
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WBWIIteratorImpl::Seek
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] native_set_pte_at
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<rocksdb::Slice, std::pair<rocksdb::Slice const, void*>, std::allocator<std::pair<rocksdb::Slice const, void*> >, std::__detail::_Select1st, std::equal_to<rocksdb::Slice>, rocksdb::SliceHasher, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::~_Hashtable
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PessimisticTransaction::SetLockTimeout
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ata_scsi_qc_complete
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::SkipList<rocksdb::WriteBatchIndexEntry*, rocksdb::WriteBatchEntryComparator const&>::FindLast
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Hashtable<unsigned int, std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > >, std::allocator<std::pair<unsigned int const, std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, rocksdb::TrackedKeyInfo, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::TrackedKeyInfo> > > > >, std::__detail::_Select1st, std::equal_to<unsigned int>, std::hash<unsigned int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::~_Hashtable
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::autovector<unsigned long, 8ul>::iterator_impl<rocksdb::autovector<unsigned long, 8ul>, unsigned long>::operator*
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::HistogramStat::Clear
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] get_vma_policy.part.35
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::InternalKeyComparator::Compare
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::HistogramImpl::Add
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] clear_page_erms
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] tty_hung_up_p
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] irq_chip_ack_parent
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] native_sched_clock
+     0.00%  read_bottleneck  ld-2.27.so                      [.] _dl_lookup_symbol_x
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __d_instantiate
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] crc_68
+     0.00%  read_bottleneck  ld-2.27.so                      [.] _dl_relocate_object
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] update_min_vruntime
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] native_apic_mem_write
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] idle_cpu
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockHandle::DecodeFrom
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::LRU_Remove
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] dev_gro_receive
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] tcp_schedule_loss_probe
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] operator delete[]@plt
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ip_sabotage_in
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::FilePrefetchBuffer::TryReadFromCache
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] tcp_packet
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] strlen@plt
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] cfq_activate_request
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUCacheShard::LRU_Insert
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] rb_erase
+     0.00%  rocksdb:low0     libsnappy.so.1.1.7              [.] snappy::UncheckedByteArraySink::GetAppendBuffer
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::FragmentedRangeTombstoneList::FragmentTombstones
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::Rep::SetStatus
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, rocksdb::stl_wrappers::LessOfComparator, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::find
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] copyout
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] bio_advance
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] get_request
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] radix_tree_iter_tag_set
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Block::~Block
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::PosixWritableFile::use_direct_io
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] jbd2_write_access_granted.part.9
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionDBMutexImpl::Lock
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::RecordTick
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] memcg_kmem_get_cache
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] copy_user_generic_unrolled
+     0.00%  rocksdb:low0     libstdc++.so.6.0.25             [.] operator delete[]
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] part_in_flight
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::UncompressionDict::GetEmptyDict
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] snappy::MaxCompressedLength@plt
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] mem_cgroup_charge_statistics
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] sys_fdatasync
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_init_io_end
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __nf_conntrack_find_get
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] rb_insert_color
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] acct_account_cputime
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ip_send_check
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] lru_cache_add_active_or_unevictable
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUCache::GetCharge
+     0.00%  rocksdb:low0     libc-2.27.so                    [.] __strchrnul_avx2
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] hrtimer_active
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] scsi_old_init_rq
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] std::ostream::operator<<
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] reweight_entity
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableInserter::MarkNoop
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockTracker::~PointLockTracker
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] should_numa_migrate_memory
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::GetCommitTimeWriteBatch
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<unsigned long>@plt
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __inc_numa_state
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] run_timer_softirq
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] do_get_write_access
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Logv
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, true> > >::_M_allocate_buckets
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] pthread_mutex_lock@plt
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] refill_stock
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ahci_handle_port_interrupt
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __mnt_want_write_file
+     0.00%  read_bottleneck  libc-2.27.so                    [.] __uflow
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x000000000010763d
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::SkipListRep::ApproximateMemoryUsage
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__detail::_Prime_rehash_policy::_M_need_rehash@plt
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockPrefetcher::PrefetchIfNeeded
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] policy_nodemask
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::MergingIterator::Valid
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x000000000010761a
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::VersionStorageInfo::RangeMightExistAfterSortedRun
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] current_time
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] do_sys_ftruncate.constprop.16
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTable::IndexReaderCommon::ReadIndexBlock
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::FileSystem::~FileSystem
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUCache::GetHash
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] nohz_balance_exit_idle.part.99
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::log::Writer::Writer
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] radix_tree_maybe_preload
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::WriteBatchWithIndex::SetMaxBytes
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] node_page_state
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] put_page
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] test_clear_page_writeback
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __handle_mm_fault
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] PageHuge
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] find_busiest_group
+     0.00%  rocksdb:low0     libc-2.27.so                    [.] __mempcpy_avx_unaligned_erms
+     0.00%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __fget_light
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] sys_readahead
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] _raw_spin_lock_irq
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Block::NewIndexIterator
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] cfq_insert_request
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::PosixLogger::Logv
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] list_sort.part.0
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] page_mkclean
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] jbd2_journal_add_journal_head
+     0.00%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::__ostream_insert<char, std::char_traits<char> >
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] blk_start_request
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __hrtimer_run_queues
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ___slab_alloc
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] cfq_add_rq_rb
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] radix_tree_tag_clear
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __x86_indirect_thunk_r8
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __vfs_read
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_handle_dirty_dirent_node
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__cxx11::list<rocksdb::MemTable*, std::allocator<rocksdb::MemTable*> >::_M_assign_dispatch<std::_List_const_iterator<rocksdb::MemTable*> >
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] read_tsc
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] test_clear_page_writeback
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::StopWatch::StopWatch
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::VersionSet::LogAndApply
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_mb_normalize_request.constprop.32
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] hrtimer_interrupt
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] inode_reserved_space
+     0.00%  read_bottleneck  [vdso]                          [.] 0x000000000000097d
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __inc_node_page_state
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::TrackedKeysColumnFamilyIterator::Next
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] kfree
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] cpuacct_account_field
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] cpuacct_charge
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::__detail::_Prime_rehash_policy::_M_next_bkt@plt
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::TransactionBaseImpl::GetWriteBatch
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x000000000010761d
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x00000000001079d4
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompactionJob::SubcompactionState::~SubcompactionState
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] unlock_page_memcg
+     0.00%  rocksdb:low0     [vdso]                          [.] 0x0000000000000971
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] operator new[]@plt
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] pmd_devmap_trans_unstable
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] rb_next
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] sg_pool_alloc
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] page_fault
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] rcu_irq_enter
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] unfreeze_partials.isra.74
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] memset@plt
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::SkipListRep::Iterator::key
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::appendToReplayLog
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ipv4_get_l4proto
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] blk_peek_request
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __fdget
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::ColumnFamilyHandleImpl::GetID
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] fput
+     0.00%  rocksdb:low0     libc-2.27.so                    [.] __strtoull_internal
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __d_lookup_done
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::PosixRandomAccessFile::use_direct_io
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] elv_rqhash_add
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] free_unref_page_list
+     0.00%  rocksdb:low0     libstdc++.so.6.0.25             [.] free@plt
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __cgroup_account_cputime_field
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::locale::~locale@plt
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __bio_try_merge_page
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] up_read
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::PrecomputeMinLogNumberToKeep2PC
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] hrtimer_active
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] syscall_return_via_sysret
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] pvclock_gtod_notify
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] lru_cache_add
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __alloc_pages_nodemask
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] operator new@plt
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_inode_block_valid
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] _raw_read_lock
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] memcg_kmem_put_cache
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::RandomAccessFileReader::Read
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] intel_pstate_update_util
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] copy_page
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __atime_needs_update
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] radix_tree_clear_tags
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] free_unref_page_list
+     0.00%  rocksdb:high0    libpthread-2.27.so              [.] __pthread_mutex_unlock
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] try_to_free_buffers
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] inc_zone_page_state
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] new_slab
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] scsi_old_init_rq
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CachableEntry<rocksdb::Block>::ReleaseResource
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] free_unref_page_prepare.part.65
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] security_file_mprotect
+     0.00%  rocksdb:low0     libc-2.27.so                    [.] _IO_default_xsputn
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::FlushJob::PickMemTable
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] do_numa_page
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::VersionBuilder::Apply
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::gettid
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] bio_init
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] bio_add_page
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] scheduler_tick
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __add_to_page_cache_locked
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::CompressBlock
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::SkipListRep::Iterator::Next
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] wake_up_bit
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] free_unref_page_prepare.part.65
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ipv4_conntrack_in
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] numamigrate_update_ratelimit
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __cancel_dirty_page
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __unlock_page_memcg
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __set_page_dirty
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] page_cache_free_page.isra.30
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::_Rb_tree_insert_and_rebalance
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::BlockBasedTablePropertiesCollector::InternalAdd
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] get_empty_filp
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::StopWatchNano::StopWatchNano
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] handle_edge_irq
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] node_tag_set
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] page_counter_uncharge
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::_Function_handler<bool (rocksdb::ConfigOptions const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*), rocksdb::OptionTypeInfo rocksdb::OptionTypeInfo::Vector<int>(int, rocksdb::OptionVerificationType, rocksdb::OptionTypeFlags, rocksdb::OptionTypeInfo const&, char)::{lambda(rocksdb::ConfigOptions const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)#3}>::_M_invoke
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] uncharge_batch
+     0.00%  rocksdb:high0    libc-2.27.so                    [.] _IO_vfscanf
+     0.00%  rocksdb:high0    libc-2.27.so                    [.] malloc_consolidate
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::vector<unsigned int, std::allocator<unsigned int> >::emplace_back<unsigned int>
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] scsi_request_fn
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __bio_clone_fast
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::PosixRandomAccessFile::use_direct_io
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_ext_index_trans_blocks
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __enqueue_entity
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] put_prev_task_fair
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] operator delete@plt
+     0.00%  read_bottleneck  libc-2.27.so                    [.] __sbrk
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] pthread_mutex_init@plt
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::io_status
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::PosixEnv::NowMicros
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __ext4_ext_dirty
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] delete_from_page_cache_batch
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::locale::~locale
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::GetInstance
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] swapgs_restore_regs_and_return_to_usermode
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __ext4_journal_stop
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] skb_clone
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::GetBGJobLimits
+     0.00%  rocksdb:high0    libc-2.27.so                    [.] _itoa_word
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] block_write_end
+     0.00%  rocksdb:high0    libc-2.27.so                    [.] __offtime
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] wake_q_add
+     0.00%  rocksdb:high0    libpthread-2.27.so              [.] __pthread_enable_asynccancel
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] ROCKSDB_XXH3p_64bits
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __getblk_gfp
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::port::Mutex::AssertHeld
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::BackgroundCompaction
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] cpumask_next_wrap
+     0.00%  rocksdb:high0    libc-2.27.so                    [.] sscanf
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __cmpxchg_double_slab.isra.34
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] task_numa_fault
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] down_read_trylock
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] jbd2_journal_try_to_free_buffers
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BaseReferencedVersionBuilder::~BaseReferencedVersionBuilder
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] memcg_check_events
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] put_cpu_partial
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] notifier_call_chain
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] unlock_buffer
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::FSWritableFile::PrepareWrite
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] mem_cgroup_page_lruvec
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] migrate_task_rq_fair
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] replace_slot
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] mpol_misplaced
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_mark_iloc_dirty
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __kernel_fpu_end
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] perf_event_task_tick
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] error_entry
+     0.00%  rocksdb:low0     libc-2.27.so                    [.] __malloc_usable_size
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ext4_update_bh_state
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_releasepage
+     0.00%  rocksdb:high0    libsnappy.so.1.1.7              [.] snappy::MaxCompressedLength
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] mem_cgroup_try_charge
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::FileIndexer::FileIndexer
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __mem_cgroup_threshold
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] kmem_cache_alloc_trace
+     0.00%  rocksdb:high0    libsnappy.so.1.1.7              [.] snappy::ByteArraySource::Skip
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __es_remove_extent
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __ptep_modify_prot_start
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] cpuacct_charge
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] pagevec_lookup_range_tag
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] schedule
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::WritableFileWriter::WriteBuffered
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] malloc@plt
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] x86_pmu_hw_config
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] x86_pmu_disable
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::FileIndexer::UpdateIndex
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_M_insert_unique<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __vma_adjust
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] do_filp_open
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] update_min_vruntime
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::crc32c::Extend
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __wake_up_common
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] page_counter_cancel
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] free@plt
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::Status::operator=
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] should_numa_migrate_memory
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __d_lookup_rcu
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] __ext4_handle_dirty_metadata
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] sys_access
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] alloc_buffer_head
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] jbd2_write_access_granted.part.9
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __es_insert_extent
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] copy_process.part.35
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __do_page_fault
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __default_send_IPI_dest_field
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ext4_get_group_desc
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::Logger::GetInfoLogLevel
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableListVersion::MemTableListVersion
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ctx_sched_out
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PosixLogger::Logv
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] cmpxchg_double_slab.isra.35
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] node_page_state
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::CompactionIterator::CompactionIterator
+     0.00%  rocksdb:low0     libpthread-2.27.so              [.] __madvise@plt
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::PointLockTracker::Clear
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] jbd2_journal_try_to_free_buffers
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __radix_tree_preload
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] truncate_inode_pages_range
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] native_apic_mem_write
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __x86_indirect_thunk_r12
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create@plt
+     0.00%  read_bottleneck  libc-2.27.so                    [.] vfprintf
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __rb_insert_augmented
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __d_lookup_rcu
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBuilder::Reset
+     0.00%  rocksdb:high0    libsnappy.so.1.1.7              [.] snappy::UncheckedByteArraySink::~UncheckedByteArraySink
+     0.00%  rocksdb:low0     libsnappy.so.1.1.7              [.] snappy::UncheckedByteArraySink::Append
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::SyncPoint::Process
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] sys_write
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] lookup_fast
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ext4_group_desc_csum
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] intel_pebs_aliases_ivb
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] tcp_pkt_to_tuple
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ext4_free_blocks
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __ptep_modify_prot_start
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __ext4_new_inode
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ext4_ext_map_blocks
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::StatisticsImpl::recordInHistogram
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x0000000000107634
+     0.00%  rocksdb:low0     libsnappy.so.1.1.7              [.] snappy::Source::~Source
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] page_counter_try_charge
+     0.00%  rocksdb:low0     libstdc++.so.6.0.25             [.] std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>@plt
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] truncate_exceptional_pvec_entries.part.12
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] sched_clock_cpu
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x0000000000107624
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ata_std_qc_defer
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ext4_chksum.isra.17.constprop.21
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] update_process_times
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] alloc_pages_vma
+     0.00%  read_bottleneck  libc-2.27.so                    [.] __GI_strtoul
+     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, rocksdb::OptionTypeInfo>::pair<char const (&) [20], true>
+     0.00%  read_bottleneck  libc-2.27.so                    [.] _IO_default_xsputn
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] pick_next_task_fair
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] security_d_instantiate
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::VersionEdit::EncodeTo
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] free_unref_page_commit
+     0.00%  rocksdb:low0     libc-2.27.so                    [.] _IO_old_init
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] unaccount_page_cache_page
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::(anonymous namespace)::PosixEnv::NowNanos
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] alloc_set_pte
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __cmpxchg_double_slab.isra.34
+     0.00%  rocksdb:high0    libc-2.27.so                    [.] __GI___printf_fp_l
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::CoreLocalArray<rocksdb::StatisticsImpl::StatisticsData>::AccessElementAndIndex
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] dput.part.26
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __filemap_fdatawait_range
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] deactivate_task
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] find_busiest_group
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::TableCache::FindTable
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::__insertion_sort<__gnu_cxx::__normal_iterator<unsigned long*, std::vector<unsigned long, std::allocator<unsigned long> > >, __gnu_cxx::__ops::_Iter_less_iter>
+     0.00%  rocksdb:high0    libpthread-2.27.so              [.] pthread_cond_wait@@GLIBC_2.3.2
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::BlockBasedTableBuilder::Rep::Rep
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __percpu_counter_sum
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::SuperVersion::~SuperVersion
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] kfree
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __brelse
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] __wake_up_bit
+     0.00%  rocksdb:high0    libc-2.27.so                    [.] __tz_convert
+     0.00%  rocksdb:high0    libstdc++.so.6.0.25             [.] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign
+     0.00%  read_bottleneck  libstdc++.so.6.0.25             [.] 0x00000000000bd6d0
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::DataBlockIter::NextOrReportImpl
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] std::_Hashtable<unsigned long, std::pair<unsigned long const, rocksdb::FileMetaData*>, std::allocator<std::pair<unsigned long const, rocksdb::FileMetaData*> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_insert_unique_node
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::VersionStorageInfo::ComputeExpiredTtlFiles
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __put_user_4
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] clear_buddies
+     0.00%  rocksdb:low0     libc-2.27.so                    [.] malloc_consolidate
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] do_fcntl
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] find_busiest_group
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] native_flush_tlb_one_user
+     0.00%  read_bottleneck  libc-2.27.so                    [.] _int_free
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] rwsem_down_write_failed_killable
+     0.00%  read_bottleneck  libpthread-2.27.so              [.] start_thread
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] finish_task_switch
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] note_gp_changes
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] nmi_restore
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] syscall_return_slowpath
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::VersionSet::ProcessManifestWrites
+     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::WritableFileWriter::Close
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::PackFileNumberAndPathId
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] down_read_trylock
+     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::WritableFileWriter::Close
+     0.00%  read_bottleneck  libpthread-2.27.so              [.] __ctype_init@plt
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] native_apic_mem_write
+     0.00%  rocksdb:low0     libpthread-2.27.so              [.] start_thread
+     0.00%  read_bottleneck  libc-2.27.so                    [.] arena_thread_freeres
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] end_repeat_nmi
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] native_flush_tlb_one_user
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ghes_copy_tofrom_phys
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] stop_one_cpu
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] end_repeat_nmi
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] native_flush_tlb_one_user
+     0.00%  perf             [kernel.kallsyms]               [k] native_sched_clock
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] perf_ctx_unlock
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] prepare_to_wait_event
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] end_repeat_nmi
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] sched_clock
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] acpi_os_read_memory
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] ghes_copy_tofrom_phys
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] set_pte_vaddr
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] native_set_fixmap
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] native_sched_clock
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] nmi_cpu_backtrace
+     0.00%  perf             [kernel.kallsyms]               [k] acpi_os_read_memory
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ghes_copy_tofrom_phys
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] ghes_read_estatus
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] sched_clock
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] ghes_read_estatus
+     0.00%  perf             [kernel.kallsyms]               [k] native_apic_mem_write
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] x86_pmu_enable
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] intel_bts_enable_local
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] x86_pmu_enable
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] intel_pmu_handle_irq
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] intel_bts_enable_local
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] x86_pmu_enable
+     0.00%  read_bottleneck  [kernel.kallsyms]               [k] __perf_event_task_sched_in
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] intel_pmu_handle_irq
+     0.00%  rocksdb:low0     [kernel.kallsyms]               [k] intel_bts_enable_local
+     0.00%  perf             [kernel.kallsyms]               [k] intel_bts_enable_local
+     0.00%  perf             [kernel.kallsyms]               [k] perf_ctx_unlock
+     0.00%  rocksdb:high0    [kernel.kallsyms]               [k] intel_pmu_handle_irq
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

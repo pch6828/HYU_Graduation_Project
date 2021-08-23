@@ -1,0 +1,58 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 478K of event 'cycles:ppp'
+# Event count (approx.): 316988812991
+#
+# Children      Self  Command          Shared Object                   Symbol                                                     
+# ........  ........  ...............  ..............................  ...........................................................
+#
+     9.99%     0.24%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::Version::Get
+            |          
+             --9.75%--rocksdb::Version::Get
+                       |          
+                        --9.13%--rocksdb::TableCache::Get
+                                  |          
+                                   --8.81%--rocksdb::BlockBasedTable::Get
+                                             |          
+                                             |--5.11%--rocksdb::BlockBasedTable::NewDataBlockIterator<rocksdb::DataBlockIter>
+                                             |          |          
+                                             |           --4.82%--rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+                                             |                     |          
+                                             |                      --4.73%--rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+                                             |                                |          
+                                             |                                |--1.59%--rocksdb::BlockFetcher::ReadBlockContents
+                                             |                                |          |          
+                                             |                                |           --0.69%--rocksdb::RandomAccessFileReader::Read
+                                             |                                |          
+                                             |                                |--0.94%--rocksdb::BlockBasedTable::PutDataBlockToCache<rocksdb::Block>
+                                             |                                |          |          
+                                             |                                |           --0.66%--rocksdb::ShardedCache::Insert
+                                             |                                |                     |          
+                                             |                                |                      --0.57%--rocksdb::LRUCacheShard::Insert
+                                             |                                |          
+                                             |                                |--0.73%--__memmove_avx_unaligned_erms
+                                             |                                |          
+                                             |                                 --0.70%--rocksdb::BlockBasedTable::GetDataBlockFromCache<rocksdb::Block>
+                                             |                                           |          
+                                             |                                            --0.64%--rocksdb::BlockBasedTable::GetEntryFromCache
+                                             |          
+                                             |--1.87%--rocksdb::BlockIter<rocksdb::IndexValue>::Seek
+                                             |          |          
+                                             |           --1.77%--rocksdb::IndexBlockIter::SeekImpl
+                                             |                     |          
+                                             |                      --0.62%--rocksdb::BlockIter<rocksdb::IndexValue>::CompareCurrentKey
+                                             |          
+                                              --0.58%--rocksdb::DataBlockIter::SeekImpl
+
+     0.31%     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableListVersion::Get
+     0.31%     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::MemTableListVersion::GetFromList
+     0.00%     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::Version::GetTableProperties
+     0.00%     0.00%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::MemTableListVersion::GetEarliestSequenceNumber
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

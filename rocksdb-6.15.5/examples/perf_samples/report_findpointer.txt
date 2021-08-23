@@ -1,0 +1,19 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 478K of event 'cycles:ppp'
+# Event count (approx.): 316988812991
+#
+# Children      Self  Command          Shared Object                   Symbol                                  
+# ........  ........  ...............  ..............................  ........................................
+#
+     0.35%     0.35%  rocksdb:low0     read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::FindPointer
+     0.23%     0.22%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::FindPointer
+     0.00%     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::LRUHandleTable::FindPointer
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

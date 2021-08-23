@@ -1,0 +1,169 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 478K of event 'cycles:ppp'
+# Event count (approx.): 316988812991
+#
+# Children      Self  Command          Shared Object                   Symbol                                      
+# ........  ........  ...............  ..............................  ............................................
+#
+    11.71%     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::Get
+            |          
+             --11.70%--rocksdb::DBImpl::Get
+                       |          
+                        --11.70%--rocksdb::DBImpl::Get
+                                  |          
+                                   --11.61%--rocksdb::DBImpl::GetImpl
+                                             |          
+                                             |--9.99%--rocksdb::Version::Get
+                                             |          |          
+                                             |           --9.13%--rocksdb::TableCache::Get
+                                             |                     |          
+                                             |                      --8.81%--rocksdb::BlockBasedTable::Get
+                                             |                                |          
+                                             |                                |--5.11%--rocksdb::BlockBasedTable::NewDataBlockIterator<rocksdb::DataBlockIter>
+                                             |                                |          |          
+                                             |                                |           --4.82%--rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+                                             |                                |                     |          
+                                             |                                |                      --4.73%--rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+                                             |                                |                                |          
+                                             |                                |                                |--1.59%--rocksdb::BlockFetcher::ReadBlockContents
+                                             |                                |                                |          |          
+                                             |                                |                                |           --0.69%--rocksdb::RandomAccessFileReader::Read
+                                             |                                |                                |          
+                                             |                                |                                |--0.94%--rocksdb::BlockBasedTable::PutDataBlockToCache<rocksdb::Block>
+                                             |                                |                                |          |          
+                                             |                                |                                |           --0.66%--rocksdb::ShardedCache::Insert
+                                             |                                |                                |                     |          
+                                             |                                |                                |                      --0.57%--rocksdb::LRUCacheShard::Insert
+                                             |                                |                                |          
+                                             |                                |                                |--0.73%--__memmove_avx_unaligned_erms
+                                             |                                |                                |          
+                                             |                                |                                 --0.70%--rocksdb::BlockBasedTable::GetDataBlockFromCache<rocksdb::Block>
+                                             |                                |                                           |          
+                                             |                                |                                            --0.64%--rocksdb::BlockBasedTable::GetEntryFromCache
+                                             |                                |          
+                                             |                                |--1.87%--rocksdb::BlockIter<rocksdb::IndexValue>::Seek
+                                             |                                |          |          
+                                             |                                |           --1.77%--rocksdb::IndexBlockIter::SeekImpl
+                                             |                                |                     |          
+                                             |                                |                      --0.62%--rocksdb::BlockIter<rocksdb::IndexValue>::CompareCurrentKey
+                                             |                                |          
+                                             |                                 --0.58%--rocksdb::DataBlockIter::SeekImpl
+                                             |          
+                                              --0.67%--rocksdb::MemTable::Get
+                                                        |          
+                                                         --0.62%--rocksdb::MemTable::GetFromTable
+                                                                   |          
+                                                                    --0.60%--rocksdb::(anonymous namespace)::SkipListRep::Get
+                                                                              |          
+                                                                               --0.56%--rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::FindGreaterOrEqual
+
+    11.70%     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::Get
+            |          
+             --11.69%--rocksdb::DBImpl::Get
+                       |          
+                        --11.61%--rocksdb::DBImpl::GetImpl
+                                  |          
+                                  |--9.99%--rocksdb::Version::Get
+                                  |          |          
+                                  |           --9.13%--rocksdb::TableCache::Get
+                                  |                     |          
+                                  |                      --8.81%--rocksdb::BlockBasedTable::Get
+                                  |                                |          
+                                  |                                |--5.11%--rocksdb::BlockBasedTable::NewDataBlockIterator<rocksdb::DataBlockIter>
+                                  |                                |          |          
+                                  |                                |           --4.82%--rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+                                  |                                |                     |          
+                                  |                                |                      --4.73%--rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+                                  |                                |                                |          
+                                  |                                |                                |--1.59%--rocksdb::BlockFetcher::ReadBlockContents
+                                  |                                |                                |          |          
+                                  |                                |                                |           --0.69%--rocksdb::RandomAccessFileReader::Read
+                                  |                                |                                |          
+                                  |                                |                                |--0.94%--rocksdb::BlockBasedTable::PutDataBlockToCache<rocksdb::Block>
+                                  |                                |                                |          |          
+                                  |                                |                                |           --0.66%--rocksdb::ShardedCache::Insert
+                                  |                                |                                |                     |          
+                                  |                                |                                |                      --0.57%--rocksdb::LRUCacheShard::Insert
+                                  |                                |                                |          
+                                  |                                |                                |--0.73%--__memmove_avx_unaligned_erms
+                                  |                                |                                |          
+                                  |                                |                                 --0.70%--rocksdb::BlockBasedTable::GetDataBlockFromCache<rocksdb::Block>
+                                  |                                |                                           |          
+                                  |                                |                                            --0.64%--rocksdb::BlockBasedTable::GetEntryFromCache
+                                  |                                |          
+                                  |                                |--1.87%--rocksdb::BlockIter<rocksdb::IndexValue>::Seek
+                                  |                                |          |          
+                                  |                                |           --1.77%--rocksdb::IndexBlockIter::SeekImpl
+                                  |                                |                     |          
+                                  |                                |                      --0.62%--rocksdb::BlockIter<rocksdb::IndexValue>::CompareCurrentKey
+                                  |                                |          
+                                  |                                 --0.58%--rocksdb::DataBlockIter::SeekImpl
+                                  |          
+                                   --0.67%--rocksdb::MemTable::Get
+                                             |          
+                                              --0.62%--rocksdb::MemTable::GetFromTable
+                                                        |          
+                                                         --0.60%--rocksdb::(anonymous namespace)::SkipListRep::Get
+                                                                   |          
+                                                                    --0.56%--rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::FindGreaterOrEqual
+
+    11.61%     0.11%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::GetImpl
+            |          
+             --11.50%--rocksdb::DBImpl::GetImpl
+                       |          
+                       |--9.99%--rocksdb::Version::Get
+                       |          |          
+                       |           --9.13%--rocksdb::TableCache::Get
+                       |                     |          
+                       |                      --8.81%--rocksdb::BlockBasedTable::Get
+                       |                                |          
+                       |                                |--5.11%--rocksdb::BlockBasedTable::NewDataBlockIterator<rocksdb::DataBlockIter>
+                       |                                |          |          
+                       |                                |           --4.82%--rocksdb::BlockBasedTable::RetrieveBlock<rocksdb::Block>
+                       |                                |                     |          
+                       |                                |                      --4.73%--rocksdb::BlockBasedTable::MaybeReadBlockAndLoadToCache<rocksdb::Block>
+                       |                                |                                |          
+                       |                                |                                |--1.59%--rocksdb::BlockFetcher::ReadBlockContents
+                       |                                |                                |          |          
+                       |                                |                                |           --0.69%--rocksdb::RandomAccessFileReader::Read
+                       |                                |                                |          
+                       |                                |                                |--0.94%--rocksdb::BlockBasedTable::PutDataBlockToCache<rocksdb::Block>
+                       |                                |                                |          |          
+                       |                                |                                |           --0.66%--rocksdb::ShardedCache::Insert
+                       |                                |                                |                     |          
+                       |                                |                                |                      --0.57%--rocksdb::LRUCacheShard::Insert
+                       |                                |                                |          
+                       |                                |                                |--0.73%--__memmove_avx_unaligned_erms
+                       |                                |                                |          
+                       |                                |                                 --0.70%--rocksdb::BlockBasedTable::GetDataBlockFromCache<rocksdb::Block>
+                       |                                |                                           |          
+                       |                                |                                            --0.64%--rocksdb::BlockBasedTable::GetEntryFromCache
+                       |                                |          
+                       |                                |--1.87%--rocksdb::BlockIter<rocksdb::IndexValue>::Seek
+                       |                                |          |          
+                       |                                |           --1.77%--rocksdb::IndexBlockIter::SeekImpl
+                       |                                |                     |          
+                       |                                |                      --0.62%--rocksdb::BlockIter<rocksdb::IndexValue>::CompareCurrentKey
+                       |                                |          
+                       |                                 --0.58%--rocksdb::DataBlockIter::SeekImpl
+                       |          
+                        --0.67%--rocksdb::MemTable::Get
+                                  |          
+                                   --0.62%--rocksdb::MemTable::GetFromTable
+                                             |          
+                                              --0.60%--rocksdb::(anonymous namespace)::SkipListRep::Get
+                                                        |          
+                                                         --0.56%--rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator const&>::FindGreaterOrEqual
+
+     0.01%     0.01%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::GetEnv
+     0.00%     0.00%  read_bottleneck  read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::GetLatestSequenceNumber
+     0.00%     0.00%  rocksdb:high0    read_bottleneck_breakdown_test  [.] rocksdb::DBImpl::GetSnapshotContext
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

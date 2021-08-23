@@ -1,22 +1,23 @@
 #ifndef ROCKSDB_LITE
 
+#include <ctime>
+#include <iostream>
+#include <sstream>
+#include <string>
+
 #include "rocksdb/db.h"
+#include "rocksdb/iostats_context.h"
 #include "rocksdb/options.h"
+#include "rocksdb/perf_context.h"
 #include "rocksdb/slice.h"
+#include "rocksdb/table.h"
 #include "rocksdb/utilities/transaction.h"
 #include "rocksdb/utilities/transaction_db.h"
-#include "rocksdb/iostats_context.h"
-#include "rocksdb/perf_context.h"
-#include "rocksdb/table.h"
-
-#include <iostream>   
-#include <sstream>
-#include <ctime>
-#include <string>
 using namespace ROCKSDB_NAMESPACE;
 
 #if defined(OS_WIN)
-std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_read_bottleneck_breakdown_test";
+std::string kDBPath =
+    "C:\\Windows\\TEMP\\rocksdb_read_bottleneck_breakdown_test";
 #else
 std::string kDBPath = "/tmp/rocksdb_read_bottleneck_breakdown_test";
 #endif
@@ -28,24 +29,24 @@ int main(int argc, char* argv[]) {
   options.create_if_missing = true;
   TransactionDB* txn_db;
 
-  //Setting for Options
-  options.write_buffer_size = 4*1024*1024;
-  options.max_bytes_for_level_base = 8*1024*1024;
+  // Setting for Options
+  options.write_buffer_size = 4 * 1024 * 1024;
+  options.max_bytes_for_level_base = 8 * 1024 * 1024;
   options.max_bytes_for_level_multiplier = 2;
   options.level0_file_num_compaction_trigger = 2;
   options.level0_slowdown_writes_trigger = 3;
   options.level0_stop_writes_trigger = 4;
   options.num_levels = 5;
-  
+
   options.statistics = rocksdb::CreateDBStatistics();
   options.statistics->set_stats_level(StatsLevel::kExceptTimeForMutex);
-  
+
   rocksdb::SetPerfLevel(rocksdb::PerfLevel::kEnableTimeExceptForMutex);
   rocksdb::get_perf_context()->EnablePerLevelPerfContext();
 
   // Delete Existing DB
   DestroyDB(kDBPath, options);
-  
+
   // Open DB
   Status s = TransactionDB::Open(options, txn_db_options, kDBPath, &txn_db);
   assert(s.ok());
@@ -57,7 +58,7 @@ int main(int argc, char* argv[]) {
 
   // Experiment Time (seconds)
   // Default Value is 5 minutes
-  double experiment_time = 100;
+  double experiment_time = 300;
 
   time_t start, now;
 
@@ -67,17 +68,19 @@ int main(int argc, char* argv[]) {
 
   // Initialize DB with Random Key-Value Pairs
   int initial_size = 1000;
-  while(initial_size--){
+  while (initial_size--) {
     for (auto& c : random_value) {
-      c = rand()%26+'a';
+      c = rand() % 26 + 'a';
     }
     for (auto& c : random_key) {
-      c = rand()%26+'a';
+      c = rand() % 26 + 'a';
     }
     s = txn_db->Put(write_options, random_key, random_value.c_str());
-    assert(s.ok()); 
+    assert(s.ok());
   }
-  
+  s = txn_db->Put(write_options, random_key, random_value.c_str());
+  assert(s.ok());
+
   start = time(NULL);
 
   // Setting Snapshot Isolation
@@ -87,15 +90,15 @@ int main(int argc, char* argv[]) {
   const Snapshot* snapshot = txn->GetSnapshot();
   read_options.snapshot = snapshot;
   int cnt = 0, get_cnt = 0;
-  
+
   // Experiment Start
   while (true) {
     // Write a key OUTSIDE of transaction
     for (auto& c : random_value) {
-      c = rand()%26+'a';
+      c = rand() % 26 + 'a';
     }
     for (auto& c : random_key) {
-      c = rand()%26+'a';
+      c = rand() % 26 + 'a';
     }
     s = txn_db->Put(write_options, random_key, random_value.c_str());
     assert(s.ok());
@@ -104,18 +107,20 @@ int main(int argc, char* argv[]) {
     cnt++;
 
     // Read/Write Ratio => 1 : 2
-    if(cnt == 2){
+    if (cnt == 2) {
       cnt = 0;
       get_cnt++;
       // Randomize Key for Get Operation
       for (auto& c : random_key) {
-        c = rand()%26+'a';
+        c = rand() % 26 + 'a';
       }
-      
+
       // Read Old Snapshot
       s = txn->Get(read_options, random_key, &value);
       auto pc = rocksdb::get_perf_context();
       // Get Statistics (Get Operation Latency)
+
+      /*
       std::cout<<pc->get_snapshot_time/get_cnt<<"\t";
       std::cout<<pc->get_from_memtable_time/get_cnt<<"\t";
       for (int i = 0; i < 5; i++){
@@ -126,11 +131,13 @@ int main(int argc, char* argv[]) {
         }
       }
       std::cout<<pc->get_post_process_time/get_cnt<<"\n";
+      */
     }
 
-    // Stop Experiment If Transaction Lifetime Exceeds Pre-defined Experiment Time
-    txn_lifetime = (double)(now-start);
-    if(txn_lifetime > experiment_time){
+    // Stop Experiment If Transaction Lifetime Exceeds Pre-defined Experiment
+    // Time
+    txn_lifetime = (double)(now - start);
+    if (txn_lifetime > experiment_time) {
       break;
     }
   }
