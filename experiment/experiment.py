@@ -51,8 +51,8 @@ def save_graph(txn_lifetime, latency, filename):
 
     plt.rc('legend', fontsize='xx-small')
     plt.legend(loc='upper left')
-    plt.show()
     plt.savefig('./result/'+filename+'.png')
+    plt.clf()
 
 
 def run_experiment(executive):
@@ -69,10 +69,10 @@ def run_experiment(executive):
     latency = []
     timestamp = 0
 
-    p = subprocess.Popen('./'+executive, shell=True)
+    p = subprocess.Popen('./'+executive, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
     for line in p.stdout.readlines():
-        record = list(map(float, line.split('\t')))
+        record = list(map(float, line.decode().split('\t')))
         latency.append(record)
         timestamp += 1
         txn_lifetime.append(timestamp)

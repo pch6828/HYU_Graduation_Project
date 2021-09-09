@@ -16,10 +16,9 @@
 using namespace ROCKSDB_NAMESPACE;
 
 #if defined(OS_WIN)
-std::string kDBPath =
-    "C:\\Windows\\TEMP\\rocksdb_read_bottleneck_breakdown_test";
+std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_experiment";
 #else
-std::string kDBPath = "/tmp/rocksdb_read_bottleneck_breakdown_test";
+std::string kDBPath = "/tmp/rocksdb_experiment";
 #endif
 
 int main(int argc, char *argv[])
@@ -58,8 +57,8 @@ int main(int argc, char *argv[])
   std::string value;
 
   // Experiment Time (seconds)
-  // Default Value is 5 minutes
-  double experiment_time = 300;
+  // Default Value is 100 seconds
+  double experiment_time = 100;
 
   time_t start, now;
 
@@ -129,17 +128,20 @@ int main(int argc, char *argv[])
       auto pc = rocksdb::get_perf_context();
       // Get Statistics (Get Operation Latency)
 
-      std::cout<<pc->get_snapshot_time/get_cnt<<"\t";
-      std::cout<<pc->get_from_memtable_time/get_cnt<<"\t";
-      for (int i = 0; i < 5; i++){
-        if((pc->level_to_perf_context)->count(i)){
-          std::cout<<(*(pc->level_to_perf_context))[i].get_from_table_nanos/get_cnt<<"\t";
-        }else{
-          std::cout<<0<<"\t";
+      std::cout << pc->get_snapshot_time / get_cnt << "\t";
+      std::cout << pc->get_from_memtable_time / get_cnt << "\t";
+      for (int i = 0; i < 5; i++)
+      {
+        if ((pc->level_to_perf_context)->count(i))
+        {
+          std::cout << (*(pc->level_to_perf_context))[i].get_from_table_nanos / get_cnt << "\t";
+        }
+        else
+        {
+          std::cout << 0 << "\t";
         }
       }
-      std::cout<<pc->get_post_process_time/get_cnt<<"\n";
-      
+      std::cout << pc->get_post_process_time / get_cnt << "\n";
     }
 
     // Stop Experiment If Transaction Lifetime Exceeds Pre-defined Experiment
