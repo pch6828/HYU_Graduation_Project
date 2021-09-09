@@ -15,13 +15,13 @@ endif
 .PHONY: clean
 
 all: 
-	echo "Please Use compile.sh"
+	./compile.sh
 
-test_with_origin_rocksdb: origin_rocksdb.a read_bottleneck_breakdown_test.cc
-	$(CXX) $(CXXFLAGS) -g read_bottleneck_breakdown_test.cc -o$@ origin_rocksdb.a -I../rocksdb-6.15.5/include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
+test_with_origin_rocksdb: ./lib/origin_rocksdb.a read_bottleneck_breakdown_test.cc
+	$(CXX) $(CXXFLAGS) -g read_bottleneck_breakdown_test.cc -o$@ ./lib/origin_rocksdb.a -I../rocksdb-6.15.5/include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
 
-test_with_custom_rocksdb: custom_rocksdb.a read_bottleneck_breakdown_test.cc
-	$(CXX) $(CXXFLAGS) -g read_bottleneck_breakdown_test.cc -o$@ custom_rocksdb.a -I../rocksdb-6.15.5/include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
+test_with_custom_rocksdb: ./lib/custom_rocksdb.a read_bottleneck_breakdown_test.cc
+	$(CXX) $(CXXFLAGS) -g read_bottleneck_breakdown_test.cc -o$@ ./lib/custom_rocksdb.a -I../rocksdb-6.15.5/include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
 
 clean:
-	rm -rf ./test_with_origin_rocksdb ./test_with_custom_rocksdb ./origin_rocksdb* ./custom_rocksdb*
+	rm -rf ./test_with_origin_rocksdb ./test_with_custom_rocksdb ./lib/origin_rocksdb* ./lib/custom_rocksdb*
