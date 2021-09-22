@@ -1888,7 +1888,7 @@ void Version::Get(const ReadOptions& read_options, const LookupKey& k,
 #ifdef SEQ_FILTER
     SequenceNumber earliest_seqno = f->file_metadata->fd.smallest_seqno;
 
-    if (get_context.CheckCallback(earliest_seqno)) {
+    if (!get_context.CheckCallback(earliest_seqno)) {
       f = fp.GetNextFile();
       continue;
     }
