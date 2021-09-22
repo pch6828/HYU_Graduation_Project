@@ -1,2 +1,4 @@
 perf.data*
 cscope.*
+*.a
+test_with_*
