@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     }
     for (auto &c : random_key)
     {
-      c = rand() % 3 + 'a';
+      c = rand() % 26 + 'a';
     }
     s = txn_db->Put(write_options, random_key, random_value.c_str());
     assert(s.ok());
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
       // Randomize Key for Get Operation
       for (auto &c : random_key)
       {
-        c = rand() % 26 + 'a';
+        c = rand() % 3 + 'a';
       }
 
       // Read Old Snapshot
