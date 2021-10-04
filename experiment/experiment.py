@@ -88,10 +88,10 @@ def run_experiment(executive):
 
 def main(workload, rocksdb):
     executive_filename = {
-        ('uniform', 'origin'): 'test_with_origin_rocksdb',
-        ('uniform', 'custom'): 'test_with_custom_rocksdb',
-        ('skewed', 'origin'): 'test_with_origin_rocksdb',
-        ('skewed', 'custom'): 'test_with_custom_rocksdb',
+        ('uniform', 'origin'): 'test_with_origin_rocksdb_uniform',
+        ('uniform', 'custom'): 'test_with_custom_rocksdb_uniform',
+        ('skewed', 'origin'): 'test_with_origin_rocksdb_skewed',
+        ('skewed', 'custom'): 'test_with_custom_rocksdb_skewed',
     }
 
     for (workload_, rocksdb_), executive in executive_filename.items():

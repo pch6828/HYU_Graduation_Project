@@ -16,9 +16,9 @@
 using namespace ROCKSDB_NAMESPACE;
 
 #if defined(OS_WIN)
-std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_experiment";
+std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_skewed_experiment";
 #else
-std::string kDBPath = "/tmp/rocksdb_experiment";
+std::string kDBPath = "/tmp/rocksdb_skewed_experiment";
 #endif
 
 int main(int argc, char *argv[])
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     }
     for (auto &c : random_key)
     {
-      c = rand() % 26 + 'a';
+      c = rand() % 3 + 'a';
     }
     s = txn_db->Put(write_options, random_key, random_value.c_str());
     assert(s.ok());
