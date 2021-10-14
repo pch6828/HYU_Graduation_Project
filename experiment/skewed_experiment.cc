@@ -38,6 +38,9 @@ int main(int argc, char *argv[])
   options.level0_stop_writes_trigger = 4;
   options.num_levels = 5;
 
+  table_options.filter_policy.reset(NewBloomFilterPolicy(10, false));
+  options.table_factory.reset(NewBlockBasedTableFactory(table_options));
+
   options.statistics = rocksdb::CreateDBStatistics();
   options.statistics->set_stats_level(StatsLevel::kExceptTimeForMutex);
 
