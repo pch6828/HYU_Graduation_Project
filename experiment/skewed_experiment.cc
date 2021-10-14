@@ -11,6 +11,7 @@
 #include "rocksdb/perf_context.h"
 #include "rocksdb/slice.h"
 #include "rocksdb/table.h"
+#include "rocksdb/filter_policy.h"
 #include "rocksdb/utilities/transaction.h"
 #include "rocksdb/utilities/transaction_db.h"
 using namespace ROCKSDB_NAMESPACE;
