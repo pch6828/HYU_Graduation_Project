@@ -6,6 +6,7 @@
 #include <string>
 
 #include "rocksdb/db.h"
+#include "rocksdb/filter_policy.h"
 #include "rocksdb/iostats_context.h"
 #include "rocksdb/options.h"
 #include "rocksdb/perf_context.h"
