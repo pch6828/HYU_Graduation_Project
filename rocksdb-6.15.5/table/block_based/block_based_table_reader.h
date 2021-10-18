@@ -267,7 +267,8 @@ class BlockBasedTable : public TableReader {
   static std::atomic<uint64_t> next_cache_key_id_;
   BlockCacheTracer* const block_cache_tracer_;
 #ifdef SEQ_FILTER
-  std::unique_ptr<std::unordered_map<Slice, SequenceNumber, SliceHasher>> seq_filter;
+  std::unique_ptr<std::unordered_map<Slice, SequenceNumber, SliceHasher>>
+      seq_filter_;
   void SetSeqFilter() override;
 #endif
 

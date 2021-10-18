@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <array>
 #include <limits>
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
@@ -2285,10 +2286,13 @@ Status BlockBasedTable::Get(const ReadOptions& read_options, const Slice& key,
 
   FilterBlockReader* const filter =
       !skip_filters ? rep_->filter.get() : nullptr;
-  if (!skip_filters && !seq_filter) {
+  if (!skip_filters && !seq_filter_) {
     SetSeqFilter();
   }
-  auto seq_filter = !skip_filters ? seq_filter.get() : nullptr;
+  auto seq_filter = !skip_filters ? seq_filter_.get() : nullptr;
+  if (seq_filter) {
+    // TODO......
+  }
   // First check the full filter
   // If full filter not useful, Then go into each block
   uint64_t tracing_get_id = get_context->get_tracing_get_id();
@@ -3446,13 +3450,12 @@ Status BlockBasedTable::DumpIndexBlock(std::ostream& out_stream) {
 #ifdef SEQ_FILTER
 void BlockBasedTable::SetSeqFilter() {
   std::unique_ptr<std::unordered_map<Slice, SequenceNumber, SliceHasher>>
-      seq_filter_ = std::make_unique<
-          std::unordered_map<Slice, SequenceNumber, SliceHasher>>();
+      seq_filter(new std::unordered_map<Slice, SequenceNumber, SliceHasher>());
   std::unique_ptr<InternalIteratorBase<IndexValue>> blockhandles_iter(
       NewIndexIterator(ReadOptions(), /*need_upper_bound_check=*/false,
                        /*input_iter=*/nullptr, /*get_context=*/nullptr,
                        /*lookup_contex=*/nullptr));
-
+  Status s;
   for (blockhandles_iter->SeekToFirst(); blockhandles_iter->Valid();
        blockhandles_iter->Next()) {
     s = blockhandles_iter->status();
@@ -3477,14 +3480,14 @@ void BlockBasedTable::SetSeqFilter() {
           StripTimestampFromUserKey(parsed_key.user_key, ts_sz);
       SequenceNumber seqno = parsed_key.sequence;
       if (seq_filter->count(user_key_without_ts)) {
-        *seq_filter_[user_key_without_ts] =
-            std::min(*seq_filter_[user_key_without_ts], seqno);
+        (*seq_filter)[user_key_without_ts] =
+            std::min((*seq_filter)[user_key_without_ts], seqno);
       } else {
-        *seq_filter_[user_key_without_ts] = seqno;
+        (*seq_filter)[user_key_without_ts] = seqno;
       }
     }
   }
-  seq_filter = std::move(seq_filter_);
+  seq_filter_ = std::move(seq_filter);
 }
 #endif
 Status BlockBasedTable::DumpDataBlocks(std::ostream& out_stream) {
