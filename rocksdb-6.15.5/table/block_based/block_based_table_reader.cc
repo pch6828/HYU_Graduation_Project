@@ -16,7 +16,6 @@
 #include <vector>
 
 #include "cache/sharded_cache.h"
-
 #include "db/dbformat.h"
 #include "db/pinned_iterators_manager.h"
 #include "file/file_prefetch_buffer.h"
@@ -24,6 +23,7 @@
 #include "file/random_access_file_reader.h"
 #include "monitoring/perf_context_imp.h"
 #include "options/options_helper.h"
+#include "port/lang.h"
 #include "rocksdb/cache.h"
 #include "rocksdb/comparator.h"
 #include "rocksdb/env.h"
@@ -54,9 +54,6 @@
 #include "table/persistent_cache_helper.h"
 #include "table/sst_file_writer_collectors.h"
 #include "table/two_level_iterator.h"
-
-#include "monitoring/perf_context_imp.h"
-#include "port/lang.h"
 #include "test_util/sync_point.h"
 #include "util/coding.h"
 #include "util/crc32c.h"
@@ -69,14 +66,11 @@ extern const uint64_t kBlockBasedTableMagicNumber;
 extern const std::string kHashIndexPrefixesBlock;
 extern const std::string kHashIndexPrefixesMetadataBlock;
 
-
 // Found that 256 KB readahead size provides the best performance, based on
 // experiments, for auto readahead. Experiment data is in PR #3282.
 const size_t BlockBasedTable::kMaxAutoReadaheadSize = 256 * 1024;
 
-BlockBasedTable::~BlockBasedTable() {
-  delete rep_;
-}
+BlockBasedTable::~BlockBasedTable() { delete rep_; }
 
 std::atomic<uint64_t> BlockBasedTable::next_cache_key_id_(0);
 
@@ -2160,7 +2154,6 @@ bool BlockBasedTable::PrefixMayMatch(
   return may_match;
 }
 
-
 InternalIterator* BlockBasedTable::NewIterator(
     const ReadOptions& read_options, const SliceTransform* prefix_extractor,
     Arena* arena, bool skip_filters, TableReaderCaller caller,
@@ -2292,7 +2285,10 @@ Status BlockBasedTable::Get(const ReadOptions& read_options, const Slice& key,
 
   FilterBlockReader* const filter =
       !skip_filters ? rep_->filter.get() : nullptr;
-
+  if (!skip_filters && !seq_filter) {
+    SetSeqFilter();
+  }
+  auto seq_filter = !skip_filters ? seq_filter.get() : nullptr;
   // First check the full filter
   // If full filter not useful, Then go into each block
   uint64_t tracing_get_id = get_context->get_tracing_get_id();
@@ -3447,6 +3443,50 @@ Status BlockBasedTable::DumpIndexBlock(std::ostream& out_stream) {
   return Status::OK();
 }
 
+#ifdef SEQ_FILTER
+void BlockBasedTable::SetSeqFilter() {
+  std::unique_ptr<std::unordered_map<Slice, SequenceNumber, SliceHasher>>
+      seq_filter_ = std::make_unique<
+          std::unordered_map<Slice, SequenceNumber, SliceHasher>>();
+  std::unique_ptr<InternalIteratorBase<IndexValue>> blockhandles_iter(
+      NewIndexIterator(ReadOptions(), /*need_upper_bound_check=*/false,
+                       /*input_iter=*/nullptr, /*get_context=*/nullptr,
+                       /*lookup_contex=*/nullptr));
+
+  for (blockhandles_iter->SeekToFirst(); blockhandles_iter->Valid();
+       blockhandles_iter->Next()) {
+    s = blockhandles_iter->status();
+    if (!s.ok()) {
+      break;
+    }
+    std::unique_ptr<InternalIterator> datablock_iter;
+    datablock_iter.reset(NewDataBlockIterator<DataBlockIter>(
+        ReadOptions(), blockhandles_iter->value().handle,
+        /*input_iter=*/nullptr, /*type=*/BlockType::kData,
+        /*get_context=*/nullptr, /*lookup_context=*/nullptr, Status(),
+        /*prefetch_buffer=*/nullptr));
+
+    for (datablock_iter->SeekToFirst(); datablock_iter->Valid();
+         datablock_iter->Next()) {
+      ParsedInternalKey parsed_key;
+      Status pik_status = ParseInternalKey(datablock_iter->key(), &parsed_key,
+                                           false /* log_err_key */);
+      size_t ts_sz =
+          rep_->internal_comparator.user_comparator()->timestamp_size();
+      Slice user_key_without_ts =
+          StripTimestampFromUserKey(parsed_key.user_key, ts_sz);
+      SequenceNumber seqno = parsed_key.sequence;
+      if (seq_filter->count(user_key_without_ts)) {
+        *seq_filter_[user_key_without_ts] =
+            std::min(*seq_filter_[user_key_without_ts], seqno);
+      } else {
+        *seq_filter_[user_key_without_ts] = seqno;
+      }
+    }
+  }
+  seq_filter = std::move(seq_filter_);
+}
+#endif
 Status BlockBasedTable::DumpDataBlocks(std::ostream& out_stream) {
   std::unique_ptr<InternalIteratorBase<IndexValue>> blockhandles_iter(
       NewIndexIterator(ReadOptions(), /*need_upper_bound_check=*/false,
