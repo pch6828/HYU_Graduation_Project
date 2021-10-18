@@ -706,7 +706,9 @@ Status BlockBasedTable::Open(
       tail_prefetch_stats->RecordEffectiveSize(
           static_cast<size_t>(file_size) - prefetch_buffer->min_offset_read());
     }
-
+#ifdef SEQ_FILTER
+    new_table->SetSeqFilter();
+#endif
     *table_reader = std::move(new_table);
   }
 
@@ -2286,13 +2288,9 @@ Status BlockBasedTable::Get(const ReadOptions& read_options, const Slice& key,
 
   FilterBlockReader* const filter =
       !skip_filters ? rep_->filter.get() : nullptr;
-  if (!skip_filters && !seq_filter_) {
-    SetSeqFilter();
-  }
+
   auto seq_filter = !skip_filters ? seq_filter_.get() : nullptr;
-  if (seq_filter) {
-    // TODO......
-  }
+
   // First check the full filter
   // If full filter not useful, Then go into each block
   uint64_t tracing_get_id = get_context->get_tracing_get_id();
