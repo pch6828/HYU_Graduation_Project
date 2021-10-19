@@ -3509,7 +3509,7 @@ bool BlockBasedTable::SeqFilterMayMatch(
 
   if (seq_filter->count(user_key_without_ts)) {
     SequenceNumber seqno = (*seq_filter)[user_key_without_ts];
-    return get_context->CheckCallback(seqno)
+    return get_context->CheckCallback(seqno);
   } else {
     return false;
   }
