@@ -270,6 +270,9 @@ class BlockBasedTable : public TableReader {
   std::unique_ptr<std::unordered_map<Slice, SequenceNumber, SliceHasher>>
       seq_filter_;
   void SetSeqFilter() override;
+  bool SeqFilterMayMatch(
+      std::unordered_map<Slice, SequenceNumber, SliceHasher>* seq_filter,
+      const Slice& internal_key, GetContext* get_context);
 #endif
 
   void UpdateCacheHitMetrics(BlockType block_type, GetContext* get_context,

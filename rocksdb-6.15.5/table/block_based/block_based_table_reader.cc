@@ -2291,10 +2291,7 @@ Status BlockBasedTable::Get(const ReadOptions& read_options, const Slice& key,
 
 #ifdef SEQ_FILTER
   auto seq_filter = !skip_filters ? seq_filter_.get() : nullptr;
-  assert(seq_filter);
-  if (seq_filter) {
-    // TODO...
-  }
+  assert((!skip_filters && seq_filter) || (skip_filters && !seq_filter));
 #endif
   // First check the full filter
   // If full filter not useful, Then go into each block
@@ -2309,9 +2306,17 @@ Status BlockBasedTable::Get(const ReadOptions& read_options, const Slice& key,
         read_options.snapshot != nullptr;
   }
   TEST_SYNC_POINT("BlockBasedTable::Get:BeforeFilterMatch");
+#ifndef SEQ_FILTER
   const bool may_match =
       FullFilterKeyMayMatch(read_options, filter, key, no_io, prefix_extractor,
                             get_context, &lookup_context);
+#endif
+#ifdef SEQ_FILTER
+  const bool may_match =
+      FullFilterKeyMayMatch(read_options, filter, key, no_io, prefix_extractor,
+                            get_context, &lookup_context) &&
+      SeqFilterMayMatch(seq_filter, key, get_context);
+#endif
   TEST_SYNC_POINT("BlockBasedTable::Get:AfterFilterMatch");
   if (!may_match) {
     RecordTick(rep_->ioptions.statistics, BLOOM_FILTER_USEFUL);
@@ -3491,6 +3496,23 @@ void BlockBasedTable::SetSeqFilter() {
     }
   }
   seq_filter_ = std::move(seq_filter);
+}
+bool BlockBasedTable::SeqFilterMayMatch(
+    std::unordered_map<Slice, SequenceNumber, SliceHasher>* seq_filter,
+    const Slice& internal_key, GetContext* get_context) {
+  ParsedInternalKey parsed_key;
+  Status pik_status =
+      ParseInternalKey(internal_key, &parsed_key, false /* log_err_key */);
+  size_t ts_sz = rep_->internal_comparator.user_comparator()->timestamp_size();
+  Slice user_key_without_ts =
+      StripTimestampFromUserKey(parsed_key.user_key, ts_sz);
+
+  if (seq_filter->count(user_key_without_ts)) {
+    SequenceNumber seqno = (*seq_filter)[user_key_without_ts];
+    return get_context->CheckCallback(seqno)
+  } else {
+    return false;
+  }
 }
 #endif
 Status BlockBasedTable::DumpDataBlocks(std::ostream& out_stream) {
