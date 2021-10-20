@@ -128,28 +128,28 @@ int main(int argc, char *argv[])
       s = txn->Get(read_options, test_key, &value);
       assert(s.ok());
       assert(value == test_value);
-
-      // Stop Experiment If Transaction Lifetime Exceeds Pre-defined Experiment
-      // Time
-      txn_lifetime = (double)(now - start);
-      if (txn_lifetime > experiment_time)
-      {
-        break;
-      }
     }
-
-    s = txn->Commit();
-    assert(s.ok());
-    // Snapshot will be released upon deleting the transaction.
-    delete txn;
-    // Clear snapshot from read options since it is no longer valid
-    read_options.snapshot = nullptr;
-    snapshot = nullptr;
-
-    // Cleanup
-    delete txn_db;
-    DestroyDB(kDBPath, options);
-    return 0;
+    // Stop Experiment If Transaction Lifetime Exceeds Pre-defined Experiment
+    // Time
+    txn_lifetime = (double)(now - start);
+    if (txn_lifetime > experiment_time)
+    {
+      break;
+    }
   }
+
+  s = txn->Commit();
+  assert(s.ok());
+  // Snapshot will be released upon deleting the transaction.
+  delete txn;
+  // Clear snapshot from read options since it is no longer valid
+  read_options.snapshot = nullptr;
+  snapshot = nullptr;
+
+  // Cleanup
+  delete txn_db;
+  DestroyDB(kDBPath, options);
+  return 0;
+}
 
 #endif // ROCKSDB_LITE

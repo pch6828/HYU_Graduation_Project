@@ -3457,8 +3457,8 @@ Status BlockBasedTable::DumpIndexBlock(std::ostream& out_stream) {
 
 #ifdef SEQ_FILTER
 void BlockBasedTable::SetSeqFilter() {
-  std::unique_ptr<std::unordered_map<Slice, SequenceNumber, SliceHasher>>
-      seq_filter(new std::unordered_map<Slice, SequenceNumber, SliceHasher>());
+  std::unique_ptr<std::unordered_map<std::string, SequenceNumber>> seq_filter(
+      new std::unordered_map<std::string, SequenceNumber>());
   std::unique_ptr<InternalIteratorBase<IndexValue>> blockhandles_iter(
       NewIndexIterator(ReadOptions(), /*need_upper_bound_check=*/false,
                        /*input_iter=*/nullptr, /*get_context=*/nullptr,
@@ -3486,29 +3486,30 @@ void BlockBasedTable::SetSeqFilter() {
           rep_->internal_comparator.user_comparator()->timestamp_size();
       Slice user_key_without_ts =
           StripTimestampFromUserKey(parsed_key.user_key, ts_sz);
+      std::string user_key_string = user_key_without_ts.ToString();
+
       SequenceNumber seqno = parsed_key.sequence;
-      if (seq_filter->count(user_key_without_ts)) {
-        (*seq_filter)[user_key_without_ts] =
-            std::min((*seq_filter)[user_key_without_ts], seqno);
+      if (seq_filter->count(user_key_string)) {
+        (*seq_filter)[user_key_string] =
+            std::min((*seq_filter)[user_key_string], seqno);
       } else {
-        (*seq_filter)[user_key_without_ts] = seqno;
+        (*seq_filter)[user_key_string] = seqno;
       }
     }
   }
+
   seq_filter_ = std::move(seq_filter);
 }
 bool BlockBasedTable::SeqFilterMayMatch(
-    std::unordered_map<Slice, SequenceNumber, SliceHasher>* seq_filter,
+    std::unordered_map<std::string, SequenceNumber>* seq_filter,
     const Slice& internal_key, GetContext* get_context) {
-  ParsedInternalKey parsed_key;
-  Status pik_status =
-      ParseInternalKey(internal_key, &parsed_key, false /* log_err_key */);
+  Slice user_key = ExtractUserKey(internal_key);
   size_t ts_sz = rep_->internal_comparator.user_comparator()->timestamp_size();
-  Slice user_key_without_ts =
-      StripTimestampFromUserKey(parsed_key.user_key, ts_sz);
+  Slice user_key_without_ts = StripTimestampFromUserKey(user_key, ts_sz);
+  std::string user_key_string = user_key_without_ts.ToString();
 
-  if (seq_filter->count(user_key_without_ts)) {
-    SequenceNumber seqno = (*seq_filter)[user_key_without_ts];
+  if (seq_filter->count(user_key_string)) {
+    SequenceNumber seqno = (*seq_filter)[user_key_string];
     return get_context->CheckCallback(seqno);
   } else {
     return false;
