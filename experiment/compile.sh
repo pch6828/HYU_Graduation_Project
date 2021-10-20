@@ -8,3 +8,4 @@ make clean
 make -j10 LIBNAME=../experiment/lib/custom_rocksdb SEQ_FILTER=1
 cd ../experiment
 make test_with_custom_rocksdb -j10
+make correctness_test

@@ -33,5 +33,8 @@ test_with_origin_rocksdb_uniform: ./lib/origin_rocksdb.a uniform_experiment.cc
 test_with_custom_rocksdb_uniform: ./lib/custom_rocksdb.a uniform_experiment.cc
 	$(CXX) $(CXXFLAGS) -g uniform_experiment.cc -o$@ ./lib/custom_rocksdb.a -I../rocksdb-6.15.5/include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
 
+correctness_test: ./lib/custom_rocksdb.a correctness_test.cc
+	$(CXX) $(CXXFLAGS) -g correctness_test.cc -o$@ ./lib/custom_rocksdb.a -I../rocksdb-6.15.5/include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
+
 clean:
 	rm -rf ./test_with_* ./lib/origin_rocksdb* ./lib/custom_rocksdb*
