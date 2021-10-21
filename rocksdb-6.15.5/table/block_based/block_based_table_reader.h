@@ -9,6 +9,10 @@
 
 #pragma once
 
+#include <util/hash.h>
+
+#include <unordered_map>
+
 #include "db/range_tombstone_fragmenter.h"
 #include "file/filename.h"
 #include "table/block_based/block_based_table_factory.h"
@@ -19,7 +23,6 @@
 #include "table/table_properties_internal.h"
 #include "table/table_reader.h"
 #include "table/two_level_iterator.h"
-
 #include "trace_replay/block_cache_tracer.h"
 
 namespace ROCKSDB_NAMESPACE {
@@ -263,6 +266,13 @@ class BlockBasedTable : public TableReader {
   friend class BlockBasedTableReaderTestVerifyChecksum_ChecksumMismatch_Test;
   static std::atomic<uint64_t> next_cache_key_id_;
   BlockCacheTracer* const block_cache_tracer_;
+#ifdef SEQ_FILTER
+  std::unique_ptr<std::unordered_map<std::string, SequenceNumber>> seq_filter_;
+  void SetSeqFilter() override;
+  bool SeqFilterMayMatch(
+      std::unordered_map<std::string, SequenceNumber>* seq_filter,
+      const Slice& internal_key, GetContext* get_context);
+#endif
 
   void UpdateCacheHitMetrics(BlockType block_type, GetContext* get_context,
                              size_t usage) const;

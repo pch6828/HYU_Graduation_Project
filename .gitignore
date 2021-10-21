@@ -1,2 +1,5 @@
 perf.data*
 cscope.*
+*.a
+test_with_*
+correctness_test

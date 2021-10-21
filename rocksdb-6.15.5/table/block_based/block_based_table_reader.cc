@@ -11,12 +11,12 @@
 #include <algorithm>
 #include <array>
 #include <limits>
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
 
 #include "cache/sharded_cache.h"
-
 #include "db/dbformat.h"
 #include "db/pinned_iterators_manager.h"
 #include "file/file_prefetch_buffer.h"
@@ -24,6 +24,7 @@
 #include "file/random_access_file_reader.h"
 #include "monitoring/perf_context_imp.h"
 #include "options/options_helper.h"
+#include "port/lang.h"
 #include "rocksdb/cache.h"
 #include "rocksdb/comparator.h"
 #include "rocksdb/env.h"
@@ -54,9 +55,6 @@
 #include "table/persistent_cache_helper.h"
 #include "table/sst_file_writer_collectors.h"
 #include "table/two_level_iterator.h"
-
-#include "monitoring/perf_context_imp.h"
-#include "port/lang.h"
 #include "test_util/sync_point.h"
 #include "util/coding.h"
 #include "util/crc32c.h"
@@ -69,14 +67,11 @@ extern const uint64_t kBlockBasedTableMagicNumber;
 extern const std::string kHashIndexPrefixesBlock;
 extern const std::string kHashIndexPrefixesMetadataBlock;
 
-
 // Found that 256 KB readahead size provides the best performance, based on
 // experiments, for auto readahead. Experiment data is in PR #3282.
 const size_t BlockBasedTable::kMaxAutoReadaheadSize = 256 * 1024;
 
-BlockBasedTable::~BlockBasedTable() {
-  delete rep_;
-}
+BlockBasedTable::~BlockBasedTable() { delete rep_; }
 
 std::atomic<uint64_t> BlockBasedTable::next_cache_key_id_(0);
 
@@ -711,7 +706,9 @@ Status BlockBasedTable::Open(
       tail_prefetch_stats->RecordEffectiveSize(
           static_cast<size_t>(file_size) - prefetch_buffer->min_offset_read());
     }
-
+#ifdef SEQ_FILTER
+    new_table->SetSeqFilter();
+#endif
     *table_reader = std::move(new_table);
   }
 
@@ -2160,7 +2157,6 @@ bool BlockBasedTable::PrefixMayMatch(
   return may_match;
 }
 
-
 InternalIterator* BlockBasedTable::NewIterator(
     const ReadOptions& read_options, const SliceTransform* prefix_extractor,
     Arena* arena, bool skip_filters, TableReaderCaller caller,
@@ -2293,6 +2289,10 @@ Status BlockBasedTable::Get(const ReadOptions& read_options, const Slice& key,
   FilterBlockReader* const filter =
       !skip_filters ? rep_->filter.get() : nullptr;
 
+#ifdef SEQ_FILTER
+  auto seq_filter = !skip_filters ? seq_filter_.get() : nullptr;
+  assert((!skip_filters && seq_filter) || (skip_filters && !seq_filter));
+#endif
   // First check the full filter
   // If full filter not useful, Then go into each block
   uint64_t tracing_get_id = get_context->get_tracing_get_id();
@@ -2306,9 +2306,17 @@ Status BlockBasedTable::Get(const ReadOptions& read_options, const Slice& key,
         read_options.snapshot != nullptr;
   }
   TEST_SYNC_POINT("BlockBasedTable::Get:BeforeFilterMatch");
+#ifndef SEQ_FILTER
   const bool may_match =
       FullFilterKeyMayMatch(read_options, filter, key, no_io, prefix_extractor,
                             get_context, &lookup_context);
+#endif
+#ifdef SEQ_FILTER
+  const bool may_match =
+      FullFilterKeyMayMatch(read_options, filter, key, no_io, prefix_extractor,
+                            get_context, &lookup_context) &&
+      SeqFilterMayMatch(seq_filter, key, get_context);
+#endif
   TEST_SYNC_POINT("BlockBasedTable::Get:AfterFilterMatch");
   if (!may_match) {
     RecordTick(rep_->ioptions.statistics, BLOOM_FILTER_USEFUL);
@@ -3447,6 +3455,67 @@ Status BlockBasedTable::DumpIndexBlock(std::ostream& out_stream) {
   return Status::OK();
 }
 
+#ifdef SEQ_FILTER
+void BlockBasedTable::SetSeqFilter() {
+  std::unique_ptr<std::unordered_map<std::string, SequenceNumber>> seq_filter(
+      new std::unordered_map<std::string, SequenceNumber>());
+  std::unique_ptr<InternalIteratorBase<IndexValue>> blockhandles_iter(
+      NewIndexIterator(ReadOptions(), /*need_upper_bound_check=*/false,
+                       /*input_iter=*/nullptr, /*get_context=*/nullptr,
+                       /*lookup_contex=*/nullptr));
+  Status s;
+  for (blockhandles_iter->SeekToFirst(); blockhandles_iter->Valid();
+       blockhandles_iter->Next()) {
+    s = blockhandles_iter->status();
+    if (!s.ok()) {
+      break;
+    }
+    std::unique_ptr<InternalIterator> datablock_iter;
+    datablock_iter.reset(NewDataBlockIterator<DataBlockIter>(
+        ReadOptions(), blockhandles_iter->value().handle,
+        /*input_iter=*/nullptr, /*type=*/BlockType::kData,
+        /*get_context=*/nullptr, /*lookup_context=*/nullptr, Status(),
+        /*prefetch_buffer=*/nullptr));
+
+    for (datablock_iter->SeekToFirst(); datablock_iter->Valid();
+         datablock_iter->Next()) {
+      ParsedInternalKey parsed_key;
+      Status pik_status = ParseInternalKey(datablock_iter->key(), &parsed_key,
+                                           false /* log_err_key */);
+      size_t ts_sz =
+          rep_->internal_comparator.user_comparator()->timestamp_size();
+      Slice user_key_without_ts =
+          StripTimestampFromUserKey(parsed_key.user_key, ts_sz);
+      std::string user_key_string = user_key_without_ts.ToString();
+
+      SequenceNumber seqno = parsed_key.sequence;
+      if (seq_filter->count(user_key_string)) {
+        (*seq_filter)[user_key_string] =
+            std::min((*seq_filter)[user_key_string], seqno);
+      } else {
+        (*seq_filter)[user_key_string] = seqno;
+      }
+    }
+  }
+
+  seq_filter_ = std::move(seq_filter);
+}
+bool BlockBasedTable::SeqFilterMayMatch(
+    std::unordered_map<std::string, SequenceNumber>* seq_filter,
+    const Slice& internal_key, GetContext* get_context) {
+  Slice user_key = ExtractUserKey(internal_key);
+  size_t ts_sz = rep_->internal_comparator.user_comparator()->timestamp_size();
+  Slice user_key_without_ts = StripTimestampFromUserKey(user_key, ts_sz);
+  std::string user_key_string = user_key_without_ts.ToString();
+
+  if (seq_filter->count(user_key_string)) {
+    SequenceNumber seqno = (*seq_filter)[user_key_string];
+    return get_context->CheckCallback(seqno);
+  } else {
+    return false;
+  }
+}
+#endif
 Status BlockBasedTable::DumpDataBlocks(std::ostream& out_stream) {
   std::unique_ptr<InternalIteratorBase<IndexValue>> blockhandles_iter(
       NewIndexIterator(ReadOptions(), /*need_upper_bound_check=*/false,

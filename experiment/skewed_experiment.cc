@@ -11,14 +11,15 @@
 #include "rocksdb/perf_context.h"
 #include "rocksdb/slice.h"
 #include "rocksdb/table.h"
+#include "rocksdb/filter_policy.h"
 #include "rocksdb/utilities/transaction.h"
 #include "rocksdb/utilities/transaction_db.h"
 using namespace ROCKSDB_NAMESPACE;
 
 #if defined(OS_WIN)
-std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_experiment";
+std::string kDBPath = "C:\\Windows\\TEMP\\rocksdb_skewed_experiment";
 #else
-std::string kDBPath = "/tmp/rocksdb_experiment";
+std::string kDBPath = "/tmp/rocksdb_skewed_experiment";
 #endif
 
 int main(int argc, char *argv[])
@@ -37,6 +38,9 @@ int main(int argc, char *argv[])
   options.level0_slowdown_writes_trigger = 3;
   options.level0_stop_writes_trigger = 4;
   options.num_levels = 5;
+
+  table_options.filter_policy.reset(NewBloomFilterPolicy(10, false));
+  options.table_factory.reset(NewBlockBasedTableFactory(table_options));
 
   options.statistics = rocksdb::CreateDBStatistics();
   options.statistics->set_stats_level(StatsLevel::kExceptTimeForMutex);
@@ -120,7 +124,7 @@ int main(int argc, char *argv[])
       // Randomize Key for Get Operation
       for (auto &c : random_key)
       {
-        c = rand() % 26 + 'a';
+        c = rand() % 3 + 'a';
       }
 
       // Read Old Snapshot

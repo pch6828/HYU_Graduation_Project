@@ -128,6 +128,17 @@ ifeq ($(filter -DROCKSDB_LITE,$(OPT)),)
 endif
 endif
 
+SEQ_FILTER ?= 0
+ifeq ($(SEQ_FILTER), 0)
+ifneq ($(filter -DSEQ_FILTER,$(OPT)),)
+  SEQ_FILTER=1
+endif
+else ifeq ($(SEQ_FILTER), 1)
+ifeq ($(filter -DSEQ_FILTER,$(OPT)),)
+	OPT += -DSEQ_FILTER
+endif
+endif
+
 # Figure out optimize level.
 ifneq ($(DEBUG_LEVEL), 2)
 ifeq ($(LITE), 0)
